@@ -18,10 +18,10 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   
-  gem 'simple_form'
   gem 'bootstrap-sass'
 end
 
+gem 'simple_form'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
