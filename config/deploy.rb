@@ -2,7 +2,7 @@ require "bundler/capistrano"
 
 server "176.34.236.46", :web, :app, :db, primary: true
 
-set :application, "176.34.236.46"
+set :application, "HomeFinance"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
