@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Finance</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<div id="alert-area">
+		<% if flash[:notice] %>
+			<div class="alert alert-success" id="notice">
+				<a class="close" data-dismiss="alert">&times;</a>
+				<%= flash[:notice] %>
+			</div>
+		<% end %>
+		</div>
+		
+		<%= yield %>
+	</div>
+</div>
+
+</body>
+</html>

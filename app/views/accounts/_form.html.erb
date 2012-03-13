@@ -1,0 +1,25 @@
+<%= simple_form_for(@account, :html => { :class => "form-horizontal"}) do |f| %>
+	<legend><%= controller.action_name.capitalize %> Account</legend>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+				          	
+	<%= f.input :name %>
+	<%= f.input :description %>
+	
+	<%= f.input :currency, :collection => Finance::Application.config.currency_list, :selected => 'UAH'%>  
+
+  <div class="form-actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+    <%= link_to "Cancel", accounts_path, :class=>"btn" %>
+  </div>
+<% end %>
