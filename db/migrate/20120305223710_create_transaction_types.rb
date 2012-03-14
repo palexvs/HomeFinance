@@ -1,7 +1,7 @@
 class CreateTransactionTypes < ActiveRecord::Migration
   def change
     create_table :transaction_types do |t|
-      t.string :type, :null => false
+      t.string :name, :null => false
       t.string :description
 
       t.timestamps
