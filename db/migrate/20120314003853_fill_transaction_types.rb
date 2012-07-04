@@ -7,5 +7,6 @@ class FillTransactionTypes < ActiveRecord::Migration
   end
 
   def down
+    TransactionType.delete_all
   end
 end
