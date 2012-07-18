@@ -1,0 +1,368 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ac",
+				"account_id"
+			],
+			[
+				"tr",
+				"transaction_type_id"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/views/layouts/_footer.html.erb",
+			"settings":
+			{
+				"buffer_size": 342,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html>\n<head>\n  <title><%= full_title(yield(:title)) %></title>\n  <%= stylesheet_link_tag    \"application\", media: \"all\" %>\n  <%= javascript_include_tag \"application\" %>\n  <%= csrf_meta_tags %>\n<!--[if lt IE 9]>\n<script src=\"http://html5shim.googlecode.com/svn/trunk/html5.js\"></script>\n<![endif]-->\n</head>\n<body>\n  <header class=\"navbar navbar-fixed-top\">\n    <div class=\"navbar-inner\">\n      <div class=\"container\">\n        <%= link_to \"sample app\", '#', id: \"logo\" %>\n        <nav>\n          <ul class=\"nav pull-right\">\n            <li><%= link_to \"Home\",    root_path %></li>\n            <li><%= link_to \"Help\",    help_path %></li>\n            <li><%= link_to \"Sign in\", '#' %></li>\n          </ul>\n        </nav>\n      </div>\n    </div>\n  </header>\n  <div class=\"container\">\n    <%= yield %>\n    <%= render 'layouts/footer'%>\n    <%= debug(params) if Rails.env.development? %>\n  </div>\n</body>\n</html>\n",
+			"file": "/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/views/layouts/application.html.erb",
+			"file_size": 991,
+			"file_write_time": 1342518108000000,
+			"settings":
+			{
+				"buffer_size": 925,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/user.rb",
+			"settings":
+			{
+				"buffer_size": 849,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 2321,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/sessions/new.html.erb",
+			"settings":
+			{
+				"buffer_size": 14,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 552.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/application.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/account.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_header.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/Gemfile",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120718092604_add_index_by_email.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120718095016_add_password_digest_to_users.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/sessions.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120718122501_create_sessions.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/environments/production.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/bootstrap.css",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/accounts.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/application.css",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/bootstrap_and_overrides.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/custom.css",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/docs.css",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/scaffolds.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/transactions.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/users.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/custom.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/assets/stylesheets/application.css",
+		"/home/alexvs/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120718094826_add_password_digest.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/application.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/transaction_type.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/transaction.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/Gemfile",
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/assets/stylesheets/custom.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/models/user.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/views/layouts/application.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/db/migrate/20120715213438_create_users.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/views/users/new.html.erb",
+		"/home/alexvs/rails_work/rails_project/sample_app/app/views/static_pages/home.html.erb"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ssl"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/views/layouts/_footer.html.erb",
+					"settings":
+					{
+						"buffer_size": 342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								341,
+								341
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/views/layouts/application.html.erb",
+					"settings":
+					{
+						"buffer_size": 925,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								829,
+								829
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "app/models/user.rb",
+					"settings":
+					{
+						"buffer_size": 849,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								655,
+								655
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config/routes.rb",
+					"settings":
+					{
+						"buffer_size": 2321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								219
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views/sessions/new.html.erb",
+					"settings":
+					{
+						"buffer_size": 14,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14,
+								14
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 201.0,
+	"status_bar_visible": true
+}

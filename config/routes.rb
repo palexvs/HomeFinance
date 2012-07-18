@@ -1,9 +1,16 @@
 Finance::Application.routes.draw do
+  root :to => 'transactions#index'
+
   resources :accounts do
     resources :transactions
   end  
+ 
   resources :transactions
-  root :to => 'transactions#index'
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete  
+
 
   get "transactions/show"
   #get "transactions/new"

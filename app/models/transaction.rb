@@ -1,4 +1,19 @@
+# == Schema Information
+#
+# Table name: transactions
+#
+#  id                  :integer         not null, primary key
+#  text                :string(255)
+#  amount              :integer
+#  date                :date
+#  created_at          :datetime        not null
+#  updated_at          :datetime        not null
+#  transaction_type_id :integer         not null
+#  account_id          :integer         default(1), not null
+#
+
 class Transaction < ActiveRecord::Base
+  attr_accessible :amount, :date, :transaction_type_id, :account_id
   validates :amount, :presence => true
   validates :date, :presence => true
   validates :transaction_type_id, :presence => true
