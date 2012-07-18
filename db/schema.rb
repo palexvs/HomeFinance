@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(:version => 20120314003853) do
     t.string   "text"
     t.integer  "amount"
     t.date     "date"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.integer  "transaction_type_id", :null => false
-    t.integer  "account_id",          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.integer  "transaction_type_id",                :null => false
+    t.integer  "account_id",          :default => 1, :null => false
   end
 
   add_index "transactions", ["account_id"], :name => "index_transactions_on_account_id"
