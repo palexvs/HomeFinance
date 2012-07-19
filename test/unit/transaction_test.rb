@@ -10,6 +10,7 @@
 #  updated_at          :datetime        not null
 #  transaction_type_id :integer         not null
 #  account_id          :integer         default(1), not null
+#  user_id             :integer
 #
 
 require 'test_helper'

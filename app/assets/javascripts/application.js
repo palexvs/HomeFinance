@@ -14,4 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-alert
+//= require bootstrap-scrollspy
+//= require bootstrap-modal
+//= require bootstrap-dropdown
 //= require_tree .

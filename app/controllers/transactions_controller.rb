@@ -1,28 +1,23 @@
 class TransactionsController < ApplicationController
+  include SessionsHelper
+  before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
+  before_filter :get_transaction_type_list,  only: [:new, :create, :edit, :update]
+  before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy] 
+
   def index
-    @transactions = Transaction.with_type.with_account.order("date desc,id desc").all
-    @accounts = Account.all
+    @transactions = current_user.transaction.with_type.with_account.order("date desc,id desc").all
   end
     
   def show
-    @transaction = Transaction.with_type.with_account.find(params[:id])
   end
 
   def new
-    @transaction = Transaction.new
-    @transaction_types = TransactionType.all
-    @accounts = Account.all
-    
-    @transaction.account_id = 1
-    @transaction.transaction_type_id = 1
-    
-    @transaction.date = DateTime.current().to_s(:db)
+    default = {account_id:  @accounts.first.id, transaction_type_id: 1, date: DateTime.current().to_s(:db)}
+    @transaction = Transaction.new(default)
   end
     
   def create
-    @transaction = Transaction.new(params[:transaction])
-    @transaction_types = TransactionType.all
-    @accounts = Account.all
+    @transaction = current_user.transaction.build(params[:transaction])
     
     @transaction.amount = @transaction.amount.to_f*100
     
@@ -34,16 +29,9 @@ class TransactionsController < ApplicationController
   end
       
   def edit
-     @transaction = Transaction.with_type.with_account.find(params[:id])
-     @transaction_types = TransactionType.all
-     @accounts = Account.all
   end
   
-  def update
-    @transaction = Transaction.find(params[:id])
-    @transaction_types = TransactionType.all
-    @accounts = Account.all
-    
+  def update    
     params[:transaction][:amount] = params[:transaction][:amount].to_f*100
     
     if @transaction.update_attributes(params[:transaction])
@@ -53,9 +41,7 @@ class TransactionsController < ApplicationController
     end
   end
     
-  def destroy
-    @transaction = Transaction.with_type.find(params[:id])
-    
+  def destroy    
     respond_to do |format|
       if @transaction.destroy
         format.html { redirect_to(root_path, :notice => 'Transaction was successfully delete.') }
@@ -66,5 +52,23 @@ class TransactionsController < ApplicationController
       end
     end
   end    
+
+  private
+
+  def get_account_list
+    @accounts = current_user.account.all
+  end
+
+  def get_transaction_type_list
+    @transaction_types = TransactionType.all
+  end
+
+  def get_transaction_by_id
+    @transaction = @transaction = current_user.transaction.find_by_id(params[:id])
+
+    if @transaction.nil?
+      redirect_to transactions_path, alert: "Can't find such transaction."
+    end       
+  end
 
 end

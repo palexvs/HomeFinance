@@ -10,10 +10,11 @@
 #  updated_at          :datetime        not null
 #  transaction_type_id :integer         not null
 #  account_id          :integer         default(1), not null
+#  user_id             :integer
 #
 
 class Transaction < ActiveRecord::Base
-  attr_accessible :amount, :date, :transaction_type_id, :account_id
+  attr_accessible :amount, :date, :text, :transaction_type_id, :account_id
   validates :amount, :presence => true
   validates :date, :presence => true
   validates :transaction_type_id, :presence => true
@@ -21,6 +22,7 @@ class Transaction < ActiveRecord::Base
   
   belongs_to :transaction_type
   belongs_to :account
+  belongs_to :user  
   
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account)

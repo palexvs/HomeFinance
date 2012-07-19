@@ -1,13 +1,19 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "Finance app", '#', class: "brand" %>
       <nav>
-        <ul class="nav pull-left">
-          <li><%= link_to "Home",    root_path %></li>
-          <li><%= link_to "Help",    '#' %></li>
+        <%=  render 'layouts/func_menu' if signed_in? %>
+        <%= link_to "Finance app", '#', class: "brand" %>
+        <ul class="nav pull-right">
           <% if signed_in? %>
-            <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+            <li class="dropdown">
+              <%= link_to '#', class: "dropdown-toggle", 'data-toggle' => "dropdown" do %>
+                <%= @current_user.email %><span class="caret"></span>
+              <% end %>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+              </ul>
+            </li>
           <% else %>            
             <li><%= link_to "Sign in", signin_path %></li>            
           <% end %>

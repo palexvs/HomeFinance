@@ -29,7 +29,7 @@ module SessionsHelper
     if !cookies[:sid].blank?
       s = Sessions.find_by_sid(cookies[:sid])
       if !s.nil?
-        @current_user ||= User.find(s.user_id)
+        @current_user ||= s.user
       else
         @current_user = nil
       end

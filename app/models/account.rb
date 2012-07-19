@@ -12,10 +12,12 @@
 #
 
 class Account < ActiveRecord::Base
-  attr_accessible :name, :currency, :balance
+  attr_accessible :name, :description, :currency, :balance
+
   validates :name, :presence => true, :uniqueness => true
   validates :currency, :presence => true, :length => {:is => 3}
   validates :balance, :presence => true
   
   has_many :transaction
+  belongs_to :user
 end

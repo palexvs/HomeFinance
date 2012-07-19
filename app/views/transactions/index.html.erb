@@ -1,5 +1,5 @@
 <div class="span10">
-<%= link_to "Account's list", accounts_path %><br />
+
 <h2>Transaction's list</h2>
 
 <%= link_to "New", new_transaction_path, :class=>"btn" %>
@@ -27,7 +27,7 @@
 				<div class="btn-group">
 					<%= link_to "Show", transaction, :class => "btn" %>					
 					<%= link_to "Edit", edit_transaction_path(transaction), :class => "btn" %>
-					<%= link_to "Delete", transaction, confirm: 'Are you sure?', :class => "btn", :method => :delete, :remote => true, "data-type" => :json %>
+					<%= link_to "Delete", transaction, data: {confirm: 'Are you sure?'}, :class => "btn", :method => :delete, :remote => true, "data-type" => :json %>
 				</div>
 			</td
 		</tr>

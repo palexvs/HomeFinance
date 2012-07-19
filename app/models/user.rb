@@ -13,6 +13,8 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_many :session
+  has_many :transaction
+  has_many :account
 
   validates :name, presence: true, length: {maximum: 50}
 
