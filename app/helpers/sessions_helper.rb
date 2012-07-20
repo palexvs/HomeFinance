@@ -1,7 +1,7 @@
 module SessionsHelper
 
   def sign_in(user)
-    s = Sessions.new 
+    s = Sessions.new
     s.user_id = user.id
     if s.save
       cookies.permanent[:sid] = s.sid
@@ -19,7 +19,7 @@ module SessionsHelper
 
   def signed_in?
     !current_user.nil?
-  end  
+  end
 
   def current_user=(user)
     @current_user = user
@@ -36,5 +36,5 @@ module SessionsHelper
     else
       @current_user = nil
     end
-  end 
+  end
 end

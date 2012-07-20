@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   protect_from_forgery
   include SessionsHelper
 
-  def new   
+  def new
     @user = User.new
   end
 
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       redirect_to(root_path, :notice => 'Authorized PASS')
     else
       redirect_to(signin_path, :notice => 'Authorized FAILED')
-    end    
+    end
   end
 
   def destroy

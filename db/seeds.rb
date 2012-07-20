@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+["outlay", "income", "transfer"].each do |type_name|
+  TransactionType.create(:name => type_name)
+end

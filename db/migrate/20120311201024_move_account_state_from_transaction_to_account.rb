@@ -5,7 +5,7 @@ class MoveAccountStateFromTransactionToAccount < ActiveRecord::Migration
     Transaction.includes(:transaction_type).all.each do |t|
       Account.update_all(["balance = balance + ? ", ((t.transaction_type.name == "outlay") ? t.amount*(-1) : t.amount)], ["id = ?", t.account_id])
     end
-    change_column :accounts, :balance, :integer, :null => false, :default => nil    
+    change_column :accounts, :balance, :integer, :null => false, :default => nil
   end
 
   def down

@@ -1,11 +1,11 @@
 <div>
-	<h3>Balance:</h3>
-	<table>
-	<% @accounts.each do |account| %>
-		<tr id="<%= dom_id(account) %>">
-			<td class="key"><%= account.name %>:</td>
-			<td class="value"><%= account.balance.to_f / 100 %></td>
-		</tr>
-	<% end %>
-	</table>
-</div>	
+  <h3>Balance:</h3>
+  <table>
+  <% accounts.each do |account| %>
+    <tr id="<%= dom_id(account) %>">
+      <td class="key"><%= account.name %>:</td>
+      <td class="value"><%= account.balance.to_f / 100 %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

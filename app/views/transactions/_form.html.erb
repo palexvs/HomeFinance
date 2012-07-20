@@ -1,15 +1,15 @@
-<%= simple_form_for(@transaction, :html => { :class => "form-horizontal"}) do |f| %>
-		<legend><%= controller.action_name.capitalize %> Transaction</legend>
-		          	
-		<%= f.input :date, :order => [:day, :month, :year] %>
-		<%= f.input :text, :label => 'Description' %>
-		<%= f.input :amount, :input_html => { :value => @transaction.amount.to_f / 100 } %>
-	
-		<%= f.association :transaction_type, :collection => @transaction_types %>
-		<%= f.association :account, :collection => @accounts %>
-	
-	<div class="form-actions">
-		<%= f.submit :class=>"btn btn-primary" %>
-		<%= link_to "Cancel", root_path, :class=>"btn" %>
-	</div>
+<%= simple_form_for(transaction, :html => { :class => "form-horizontal"}) do |f| %>
+    <legend><%= controller.action_name.capitalize %> Transaction</legend>
+
+    <%= f.input :date, :order => [:day, :month, :year] %>
+    <%= f.input :text, :label => 'Description' %>
+    <%= f.input :amount, :input_html => { value: transaction.amount.to_f / 100 } %>
+
+    <%= f.association :transaction_type, collection: transaction_types %>
+    <%= f.association :account, collection: accounts %>
+
+  <div class="form-actions">
+    <%= f.submit :class=>"btn btn-primary" %>
+    <%= link_to "Cancel", root_path, :class=>"btn" %>
+  </div>
 <% end %>

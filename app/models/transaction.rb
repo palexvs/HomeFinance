@@ -19,45 +19,49 @@ class Transaction < ActiveRecord::Base
   validates :date, :presence => true
   validates :transaction_type_id, :presence => true
   validates :account_id, :presence => true
-  
+
   belongs_to :transaction_type
+  delegate :name, :to => :transaction_type, :prefix => true
+
   belongs_to :account
-  belongs_to :user  
-  
+  delegate :name, :to => :account, :prefix => true
+
+  belongs_to :user
+
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account)
-  
+
   before_create :update_balance_create
   before_destroy :update_balance_destroy
   before_update :update_balance_update
-  
+
   private
   def update_balance_create(t = self)
-    offset = get_amount_with_sign(t)     
-    
+    offset = get_amount_with_sign(t)
+
     Account.update_counters t.account_id, :balance => offset
   end
-  
+
   def update_balance_destroy(t = self)
     offset = get_amount_with_sign(t)
-    
+
     Account.update_counters t.account_id, :balance => offset*(-1)
   end
-  
+
   def update_balance_update
     transaction_old = Transaction.find(id)
-    
+
     update_balance_destroy(transaction_old)
     update_balance_create(self)
-    
+
   end
-  
+
   def get_amount_with_sign(t = self)
     sign_amount = case TransactionType.find(t.transaction_type_id).name
       when "outlay" then t.amount*(-1)
        else t.amount
     end
-    
-    return sign_amount    
-  end    
+
+    return sign_amount
+  end
 end

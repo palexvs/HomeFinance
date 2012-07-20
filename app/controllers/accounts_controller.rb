@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   include SessionsHelper
   before_filter :get_account_by_id, only: [:edit, :show, :update, :destroy]
-  
+
   # GET /accounts
   # GET /accounts.json
   def index
@@ -34,7 +34,7 @@ class AccountsController < ApplicationController
   end
 
   # GET /accounts/1/edit
-  def edit  
+  def edit
   end
 
   # POST /accounts
@@ -47,7 +47,7 @@ class AccountsController < ApplicationController
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render json: @account, status: :created, location: @account }
       else
-        format.html { render action: "new" }
+        format.html "new"
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +61,7 @@ class AccountsController < ApplicationController
         format.html { redirect_to @account, notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html :edit
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end
@@ -85,6 +85,6 @@ class AccountsController < ApplicationController
 
     if @account.nil?
       redirect_to accounts_path, alert: "Can't find such account."
-    end       
+    end
   end
 end
