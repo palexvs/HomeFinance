@@ -84,7 +84,7 @@ class AccountsController < ApplicationController
     @account = current_user.account.find_by_id(params[:id])
 
     if @account.nil?
-      redirect_to accounts_path, alert: "Can't find such account."
+      redirect_to accounts_path, alert: "Can't get such account."
     end
   end
 end

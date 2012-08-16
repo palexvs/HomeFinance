@@ -67,7 +67,7 @@ class TransactionsController < ApplicationController
     @transaction = @transaction = current_user.transaction.find_by_id(params[:id])
 
     if @transaction.nil?
-      redirect_to transactions_path, alert: "Can't find such transaction."
+      redirect_to transactions_path, alert: "Can't get such transaction."
     end
   end
 

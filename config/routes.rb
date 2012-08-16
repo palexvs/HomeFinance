@@ -6,8 +6,10 @@ Finance::Application.routes.draw do
   end
 
   resources :transactions
+  resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
+  match '/register',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 

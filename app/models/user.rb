@@ -16,8 +16,6 @@ class User < ActiveRecord::Base
   has_many :transaction
   has_many :account
 
-  validates :name, presence: true, length: {maximum: 50}
-
   VALID_EMAIL_REGEX = /\A[\w+\-_+.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
             uniqueness: true,
