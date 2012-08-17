@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
-  protect_from_forgery
-  include SessionsHelper
+  def home
+    if signed_in?
+      redirect_to transactions_path
+    else
+      redirect_to new_session_path
+    end
+  end
 
   def new
     @user = User.new

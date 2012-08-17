@@ -1,5 +1,5 @@
 Finance::Application.routes.draw do
-  root :to => 'transactions#index'
+  root :to => 'sessions#home'
 
   resources :accounts do
     resources :transactions
@@ -7,7 +7,7 @@ Finance::Application.routes.draw do
 
   resources :transactions
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:home, :new, :create, :destroy]
 
   match '/register',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

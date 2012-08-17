@@ -24,60 +24,42 @@
 	"buffers":
 	[
 		{
+			"file": "config/deploy.rb",
+			"settings":
+			{
+				"buffer_size": 2213,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/nginx.conf",
+			"settings":
+			{
+				"buffer_size": 623,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/accounts_controller.rb",
+			"settings":
+			{
+				"buffer_size": 2127,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/transactions_controller.rb",
+			"settings":
+			{
+				"buffer_size": 1969,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "config/routes.rb",
 			"settings":
 			{
 				"buffer_size": 2370,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 363 files for \"signout\"\n\n/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_header.html.erb:\n   13                <ul class=\"dropdown-menu\">\n   14                  <li><%= link_to \"Profile\", user_path(current_user.id) %></li>\n   15:                 <li><%= link_to \"Sign out\", signout_path, method: \"delete\" %></li>\n   16                </ul>\n   17              </li>\n\n/home/alexvs/Aptana Studio 3 Workspace/Finance/config/routes.rb:\n   12    match '/register',  to: 'users#new'\n   13    match '/signin',  to: 'sessions#new'\n   14:   match '/signout', to: 'sessions#destroy', via: :delete\n   15  \n   16  \n\n2 matches across 2 files\n",
-			"settings":
-			{
-				"buffer_size": 656,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "app/views/layouts/_header.html.erb",
-			"settings":
-			{
-				"buffer_size": 905,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/layouts/application.html.erb",
-			"settings":
-			{
-				"buffer_size": 919,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/layouts/_func_menu.html.erb",
-			"settings":
-			{
-				"buffer_size": 672,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models/user.rb",
-			"settings":
-			{
-				"buffer_size": 875,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Gemfile",
-			"settings":
-			{
-				"buffer_size": 881,
 				"line_ending": "Unix"
 			}
 		}
@@ -106,18 +88,20 @@
 	},
 	"file_history":
 	[
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/Gemfile",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/user.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_func_menu.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/application.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_header.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/routes.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/bootstrap_and_overrides.css.scss",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/transaction.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/Gemfile",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/controllers/accounts_controller.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/alert.js",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/destroy.js",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/user.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/seeds.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_header.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/helpers/sessions_helper.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/users/new.html.erb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/routes.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/controllers/users_controller.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/users/show.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/controllers/transactions_controller.rb",
@@ -127,7 +111,6 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_form.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120309170406_add_account_id_coulumn_for_transaction.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120314003853_fill_transaction_types.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/application.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/accounts/new.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/accounts/edit.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/accounts/_form.html.erb",
@@ -139,7 +122,6 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/account.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/show.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/transaction_type.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_func_menu.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/rails_best_practices.yml",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/schema.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/sessions.rb",
@@ -221,27 +203,56 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "config/routes.rb",
+					"file": "config/deploy.rb",
 					"settings":
 					{
-						"buffer_size": 2370,
+						"buffer_size": 2213,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								394,
-								394
+								2213,
+								2213
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 269.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "config/nginx.conf",
+					"settings":
+					{
+						"buffer_size": 623,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -252,72 +263,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"settings":
-					{
-						"buffer_size": 656,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										302,
-										309
-									],
-									[
-										567,
-										574
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								307,
-								307
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 2,
-					"file": "app/views/layouts/_header.html.erb",
+					"file": "app/controllers/accounts_controller.rb",
 					"settings":
 					{
-						"buffer_size": 905,
+						"buffer_size": 2127,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7,
-								7
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -329,74 +292,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "app/views/layouts/application.html.erb",
+					"file": "app/controllers/transactions_controller.rb",
 					"settings":
 					{
-						"buffer_size": 919,
+						"buffer_size": 1969,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/views/layouts/_func_menu.html.erb",
-					"settings":
-					{
-						"buffer_size": 672,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/models/user.rb",
-					"settings":
-					{
-						"buffer_size": 875,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								457,
-								457
+								1612,
+								1612
 							]
 						],
 						"settings":
@@ -406,30 +313,32 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 473.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "Gemfile",
+					"buffer": 4,
+					"file": "config/routes.rb",
 					"settings":
 					{
-						"buffer_size": 881,
+						"buffer_size": 2370,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								140,
-								140
+								251,
+								251
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -482,15 +391,15 @@
 		"selected_items":
 		[
 			[
+				"rou",
+				"config/routes.rb"
+			],
+			[
 				"gem",
 				"Gemfile"
 			],
 			[
 				"route",
-				"config/routes.rb"
-			],
-			[
-				"rou",
 				"config/routes.rb"
 			],
 			[
