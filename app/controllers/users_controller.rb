@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to(signin_path, :notice => 'Successfully registered. Please, Login now')
     else
-      render :new
+      render 'sessions/new'
     end    
   end
 end

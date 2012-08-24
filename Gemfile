@@ -33,10 +33,10 @@ gem 'annotate', '~> 2.5.0', group: :development
 # gem 'jbuilder'
 
 # Use unicorn as the web server
- gem 'unicorn'
+ #gem 'unicorn'
 
 # Deploy with Capistrano
- gem 'capistrano'
+ #gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

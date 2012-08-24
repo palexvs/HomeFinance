@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     if signed_in?
       redirect_to transactions_path
     else
-      redirect_to new_session_path
+      redirect_to signin_path
     end
   end
 
@@ -15,9 +15,12 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:user][:email])
     if user && user.authenticate(params[:user][:password])
       sign_in user
-      redirect_to(root_path, :notice => 'Authorized PASS')
+      redirect_to(root_path, notice: 'Authorized PASS')
     else
-      redirect_to(signin_path, :notice => 'Authorized FAILED')
+      @user = User.new(params[:user])
+      flash[:alert] = 'Invalid email/password combination'
+      render 'new'
+#      redirect_to(signin_path, :notice => 'Authorized FAILED')
     end
   end
 
