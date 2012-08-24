@@ -57,6 +57,9 @@ class TransactionsController < ApplicationController
 
   def get_account_list
     @accounts = current_user.account.all
+    if @accounts.empty? 
+      redirect_to accounts_path, alert: "Please, create at least one account."
+    end
   end
 
   def get_transaction_type_list

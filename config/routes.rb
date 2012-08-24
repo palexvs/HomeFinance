@@ -1,7 +1,7 @@
 Finance::Application.routes.draw do
   root :to => 'sessions#home'
 
-  resources :accounts do
+  resources :accounts, exclude: [:show] do
     resources :transactions
   end
 

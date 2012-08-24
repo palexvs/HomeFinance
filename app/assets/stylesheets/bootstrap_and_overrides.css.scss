@@ -17,6 +17,28 @@
 //  color: #FAFFB8;
 //}
 
+
+
+// Accounts Table
+.accounts td {
+  vertical-align: middle;
+  &.currency {
+    width: 80px;
+  }
+  &.control {
+    width: 50px;
+  }
+}
+
+// Control cell
+.control ul.nav {
+  margin-bottom: 0;
+  a {
+    padding: 4px;
+  }
+}
+
+// DEBUG BOX
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
