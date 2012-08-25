@@ -15,10 +15,12 @@
 
 class Transaction < ActiveRecord::Base
   attr_accessible :amount, :date, :text, :transaction_type_id, :account_id
+
   validates :amount, :presence => true
   validates :date, :presence => true
   validates :transaction_type_id, :presence => true
   validates :account_id, :presence => true
+  validate :has_access_to_account
 
   belongs_to :transaction_type
   delegate :name, :to => :transaction_type, :prefix => true
@@ -35,7 +37,23 @@ class Transaction < ActiveRecord::Base
   before_destroy :update_balance_destroy
   before_update :update_balance_update
 
+  def cents_to_money
+    self.amount.to_f / 100.0
+  end
+
+  def amount=(value)
+    value = value.to_f * 100
+    write_attribute(:amount, value)
+  end  
+
   private
+
+  def has_access_to_account
+    if Account.where("id = ? AND user_id = ?", account_id, user_id).empty?
+      errors.add(:account_id, "Wrong account")
+    end
+  end
+
   def update_balance_create(t = self)
     offset = get_amount_with_sign(t)
 
@@ -53,7 +71,6 @@ class Transaction < ActiveRecord::Base
 
     update_balance_destroy(transaction_old)
     update_balance_create(self)
-
   end
 
   def get_amount_with_sign(t = self)

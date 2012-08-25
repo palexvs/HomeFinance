@@ -10,6 +10,11 @@
     </tr>
     </thead>
   <tbody>
+  <% if @accounts.empty? %>
+    <tr><td colspan="4">
+      <i>There is no accounts, please create ...</i>
+    </td></tr>
+  <% end %>
   <% @accounts.each do |account| %>
     <tr>
       <td class="name"><%= account.name %></td>

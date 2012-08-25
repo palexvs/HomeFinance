@@ -21,6 +21,7 @@ group :assets do
   gem 'bootstrap-sass', '~>2.0.4.0'
 end
 
+gem 'bootstrap-datepicker-rails', '~> 0.6.17'
 gem 'simple_form'
 gem 'jquery-rails'
 

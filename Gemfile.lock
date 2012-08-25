@@ -32,6 +32,8 @@ GEM
       rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bootstrap-datepicker-rails (0.6.17)
+      railties (>= 3.0)
     bootstrap-sass (2.0.4.0)
     builder (3.0.0)
     coffee-rails (3.2.2)
@@ -112,6 +114,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 2.5.0)
   bcrypt-ruby (~> 3.0.1)
+  bootstrap-datepicker-rails (~> 0.6.17)
   bootstrap-sass (~> 2.0.4.0)
   coffee-rails (~> 3.2.2)
   jquery-rails

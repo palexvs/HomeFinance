@@ -20,18 +20,20 @@
 
 
 // Accounts Table
-.accounts td {
-  vertical-align: middle;
-  &.currency {
-    width: 80px;
-  }
-  &.control {
-    width: 50px;
+.accounts, .transactions {
+  td {
+    vertical-align: middle;
+    &.currency {
+      width: 80px;
+    }
+    &.control {
+      width: 50px;
+    }
   }
 }
 
 // Control cell
-.control ul.nav {
+.control ul.nav-pills {
   margin-bottom: 0;
   a {
     padding: 4px;

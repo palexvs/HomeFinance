@@ -1,9 +1,9 @@
 <%= simple_form_for(transaction, :html => { :class => "form-horizontal"}) do |f| %>
     <legend><%= controller.action_name.capitalize %> Transaction</legend>
 
-    <%= f.input :date, :order => [:day, :month, :year] %>
+    <%= f.input :date, as: :string, input_html: { class: "datepicker" } %>
     <%= f.input :text, :label => 'Description' %>
-    <%= f.input :amount, :input_html => { value: transaction.amount.to_f / 100 } %>
+    <%= f.input :amount, as: :float, :input_html => { value: transaction.cents_to_money } %>
 
     <%= f.association :transaction_type, collection: transaction_types %>
     <%= f.association :account, collection: accounts %>

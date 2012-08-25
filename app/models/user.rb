@@ -12,9 +12,9 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :password
-  has_many :session
-  has_many :transaction
-  has_many :account
+  has_many :session, :dependent => :destroy
+  has_many :transaction, :dependent => :destroy
+  has_many :account, :dependent => :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-_+.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,

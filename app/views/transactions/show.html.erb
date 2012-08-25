@@ -11,7 +11,7 @@
   </div>
   <div class="control-group">
     <%= f.label :amount, :class=>"control-label" %>
-    <div class="controls"><%= f.text_field :amount, :value => @transaction.amount.to_f / 100, :readonly => true, :class => "input-xlarge" %></div>
+    <div class="controls"><%= f.text_field :amount, :value => @transaction.cents_to_money, :readonly => true, :class => "input-xlarge" %></div>
   </div>
 
   <div class="control-group">

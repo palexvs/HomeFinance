@@ -1,5 +1,7 @@
 class TransactionsController < ApplicationController
+
   include SessionsHelper
+
   before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
   before_filter :get_transaction_type_list,  only: [:new, :create, :edit, :update]
   before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy]
@@ -19,8 +21,6 @@ class TransactionsController < ApplicationController
   def create
     @transaction = current_user.transaction.build(params[:transaction])
 
-    @transaction.amount = @transaction.amount.to_f*100
-
     if @transaction.save
       redirect_to(root_path, :notice => 'Transaction was successfully created.')
     else
@@ -32,8 +32,6 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    params[:transaction][:amount] = params[:transaction][:amount].to_f*100
-
     if @transaction.update_attributes(params[:transaction])
       redirect_to(root_path, :notice => 'Transaction was successfully updated.')
     else
@@ -67,7 +65,7 @@ class TransactionsController < ApplicationController
   end
 
   def get_transaction_by_id
-    @transaction = @transaction = current_user.transaction.find_by_id(params[:id])
+    @transaction = current_user.transaction.find_by_id(params[:id])
 
     if @transaction.nil?
       redirect_to transactions_path, alert: "Can't get such transaction."
