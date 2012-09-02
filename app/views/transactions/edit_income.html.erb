@@ -3,10 +3,10 @@
 
     <%= f.input :date, as: :string, input_html: { class: "datepicker" } %>
     <%= f.input :text, :label => 'Description' %>
-    <%= f.input :amount, as: :float, :input_html => { value: transaction.cents_to_money } %>
-
-    <%= f.association :transaction_type, collection: transaction_types %>
+    <%= f.input :amount, as: :float %>
     <%= f.association :account, collection: accounts %>
+
+    <%= f.input :transaction_type_id, as: :hidden %>
 
   <div class="form-actions">
     <%= f.submit :class=>"btn btn-primary" %>

@@ -19,18 +19,17 @@ class Account < ActiveRecord::Base
   validates :currency, :presence => true, :length => {:is => 3}
   validates :balance, :presence => true
 
-  has_many :transaction, :dependent => :destroy
+  has_many :transaction, :class_name => 'Transaction', :foreign_key => 'account_id'
+  has_many :trans_transaction, :class_name => 'Transaction', :foreign_key => 'trans_account_id'
+
+
   belongs_to :user
 
   DATE_FOR_BALANCE_TRANSACTION = DateTime.new(1900).to_s(:db)
 
   def start_balance
-    t_start_balance = Transaction.where("account_id = ? AND date = ?", self.id, DATE_FOR_BALANCE_TRANSACTION).first
-    if !t_start_balance.nil?
-      t_start_balance.cents_to_money
-    else
-      0.0
-    end
+    t_start_balance = Transaction.where("account_id = ? AND date = ?", id, DATE_FOR_BALANCE_TRANSACTION).first_or_initialize
+    t_start_balance.amount
   end
 
   def start_balance=(amount)
@@ -42,12 +41,12 @@ class Account < ActiveRecord::Base
   private
 
   def set_start_balance
-    data = { amount: @start_balance, 
+    data = { amount: @start_balance,
             date: DATE_FOR_BALANCE_TRANSACTION, 
             text: "set start balance", 
-            account_id: self.id,
+            account_id: id,
             transaction_type_id: ( @start_balance.to_f >= 0 ? 2 : 1 ) } # 1 - outlay, 2 - income
-    t_start_balance = Transaction.where("account_id = ? AND date = ?", self.id, DATE_FOR_BALANCE_TRANSACTION).first_or_initialize
+    t_start_balance = User.find(user_id).transaction.where("account_id = ? AND date = ?", id, DATE_FOR_BALANCE_TRANSACTION).first_or_initialize
     if !t_start_balance.update_attributes(data)
       # DO SOMTHING
     end

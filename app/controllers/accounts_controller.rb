@@ -1,5 +1,4 @@
 class AccountsController < ApplicationController
-  include SessionsHelper
   before_filter :get_account_by_id, only: [:edit, :show, :update, :destroy]
 
   def index

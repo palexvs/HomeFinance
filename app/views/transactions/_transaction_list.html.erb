@@ -1,0 +1,54 @@
+<table class="transactions table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Account</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if @transactions.empty? %>
+    <tr><td colspan="6">
+      <i>There is no transaction ...</i>
+    </td></tr>
+  <% end %>    
+    <% @transactions.each do |transaction| %>
+      <tr id="<%= dom_id(transaction) %>" class="<%= transaction.transaction_type_name %>" >
+        <td class="date" ><%= transaction.date %></td>
+        <td class="description" ><%= transaction.text %></td>
+
+        <% if transaction.is_transfer? %>
+          <td class="type">
+            <%= transaction.transaction_type_name %> <span class="right">from:</span><br>
+            <div class="divider"></div>
+            <span class="right">to:</span>
+          </td>
+          <td class="amount">
+            <%= transaction.amount %><br>
+            <div class="divider"></div>
+            <%= transaction.trans_amount %>
+          </td>
+          <td class="account">
+            <%= transaction.account_name %><br>
+            <div class="divider"></div>
+            <%= transaction.trans_account_name %>
+          </td>
+        <% else %>
+          <td class="type"><%= transaction.transaction_type_name %></td>
+          <td class="amount"><%= transaction.amount %></td>
+          <td class="account"><%= transaction.account_name %></td>
+        <% end %>
+
+        <td class="control">
+          <ul class="nav nav-pills">
+            <li><%= link_to [:edit, transaction] do %><i class="icon-pencil"></i><% end %></li>
+            <li><%= link_to transaction, confirm: 'Are you sure?', method: :delete, :remote => true, "data-type" => :json do %><i class="icon-trash"></i><% end %></li>
+          </ul>
+        </td>
+      </tr>    
+    <% end %>
+  </tbody>
+</table>

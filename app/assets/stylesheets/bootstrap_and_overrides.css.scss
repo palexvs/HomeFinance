@@ -1,28 +1,23 @@
-// Set the correct sprite paths
-//$iconSpritePath: image-path('glyphicons-halflings.png');
-//$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
-
-//$navbarBackground: #555;
-//$navbarBackgroundHighlight: #888;
-//$navbarText: #eee;
-//$navbarLinkColor: #eee;
-
 @import "bootstrap";
-
-//body { padding-top: 60px; }
-
-//@import "bootstrap-responsive";
-
-//.navbar .brand {
-//  color: #FAFFB8;
-//}
-
 
 
 // Accounts Table
 .accounts, .transactions {
   td {
     vertical-align: middle;
+    &.date {
+      width:85px;
+    }
+    &.type {
+      width: 90px;
+      div.divider {
+        width:30px;
+        float:right;
+      }
+    }
+    &.amount {
+      width:80px;
+    }
     &.currency {
       width: 80px;
     }
@@ -53,4 +48,23 @@
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+// COMMON STYLES
+.hidden {
+  display: none;
+}
+
+span.right {
+  float:right;
+  clear:both;
+}
+
+div.divider {
+  height: 1px;
+  margin: 3px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #ffffff;
+  clear:both;
 }

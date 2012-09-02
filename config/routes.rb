@@ -1,11 +1,9 @@
 Finance::Application.routes.draw do
   root :to => 'sessions#home'
 
-  resources :accounts, exclude: [:show] do
-    resources :transactions
-  end
-
+  resources :accounts, exclude: [:show] 
   resources :transactions
+
   resources :users
   resources :sessions, only: [:home, :new, :create, :destroy]
 
@@ -13,9 +11,6 @@ Finance::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-
-  get "transactions/show"
-  #get "transactions/new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

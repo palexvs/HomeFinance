@@ -1,21 +1,21 @@
 class TransactionsController < ApplicationController
-
-  include SessionsHelper
-
   before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
-  before_filter :get_transaction_type_list,  only: [:new, :create, :edit, :update]
   before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy]
 
   def index
-    @transactions = current_user.transaction.with_type.with_account.order("date desc,id desc").all
+    @transactions = current_user.transaction.with_type.with_account.order_date.all
   end
 
   def show
   end
 
   def new
-    default = {account_id:  @accounts.first.id, transaction_type_id: 1, date: DateTime.current().to_s(:db)}
+    default = {account_id:  @accounts.first.id, date: Date.current().to_s(:db)}
+    default[:transaction_type_id] = TransactionType.find_by_name(params[:type]).id
+
     @transaction = Transaction.new(default)
+
+    render transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction }
   end
 
   def create
@@ -24,11 +24,12 @@ class TransactionsController < ApplicationController
     if @transaction.save
       redirect_to(root_path, :notice => 'Transaction was successfully created.')
     else
-      render :new
+      render transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction }
     end
   end
 
   def edit
+    render transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction }
   end
 
   def update
@@ -60,15 +61,22 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def get_transaction_type_list
-    @transaction_types = TransactionType.all
-  end
-
   def get_transaction_by_id
     @transaction = current_user.transaction.find_by_id(params[:id])
 
     if @transaction.nil?
       redirect_to transactions_path, alert: "Can't get such transaction."
+    end
+  end
+
+  def transaction_edit_form
+    case @transaction.transaction_type_name
+      when 'outlay'
+        return 'edit_outlay'
+      when 'income'
+        return 'edit_income'
+      when 'transfer'
+        return 'edit_transfer'
     end
   end
 

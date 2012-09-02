@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719193856) do
+ActiveRecord::Schema.define(:version => 20120902183023) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -45,16 +45,19 @@ ActiveRecord::Schema.define(:version => 20120719193856) do
 
   create_table "transactions", :force => true do |t|
     t.string   "text"
-    t.integer  "amount"
+    t.integer  "amount_cents"
     t.date     "date"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.integer  "transaction_type_id",                :null => false
     t.integer  "account_id",          :default => 1, :null => false
     t.integer  "user_id"
+    t.integer  "trans_account_id"
+    t.integer  "trans_amount_cents"
   end
 
   add_index "transactions", ["account_id"], :name => "index_transactions_on_account_id"
+  add_index "transactions", ["trans_account_id"], :name => "index_transactions_on_trans_account_id"
   add_index "transactions", ["transaction_type_id"], :name => "index_transactions_on_type_id"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 

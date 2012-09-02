@@ -2,42 +2,21 @@
 
 <h2>Transaction's list</h2>
 
-<%= link_to "New", new_transaction_path, :class=>"btn" %>
 
-<table class="transactions table table-striped table-condensed">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Description</th>
-      <th>Amount</th>
-      <th>Type</th>
-      <th>Account</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @transactions.each do |transaction| %>
-    <tr id="<%= dom_id(transaction) %>">
-      <td><%= transaction.date %></td>
-      <td><%= transaction.text %></td>
-      <td><%= transaction.amount.to_f / 100 %></td>
-      <td><%= transaction.transaction_type_name %></td>
-      <td><%= transaction.account_name %></td>
-      <td class="control">
-        <ul class="nav nav-pills">
-          <li><%= link_to [:edit, transaction] do %><i class="icon-pencil"></i><% end %></li>
-          <li><%= link_to transaction, confirm: 'Are you sure?', method: :delete, :remote => true, "data-type" => :json do %><i class="icon-trash"></i><% end %></li>
-        </ul>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    New Transaction
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><%= link_to "Outlay", new_transaction_path(:type => "outlay") %></li>
+    <li><%= link_to "Income", new_transaction_path(:type => "income") %></li>
+    <li><%= link_to "Transfer", new_transaction_path(:type => "transfer") %></li>
+  </ul>
+</div>
 
-<% if @transactions.empty? %>
-  <em>No transactions</em>
-<% end %>
-<br />
+
+<%= render 'transaction_list' %>
 
 </div>
 

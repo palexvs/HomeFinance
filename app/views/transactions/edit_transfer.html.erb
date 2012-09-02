@@ -1,0 +1,21 @@
+<%= simple_form_for(transaction, :html => { :class => "form-horizontal"}) do |f| %>
+    <legend><%= controller.action_name.capitalize %> Transaction</legend>
+
+    <%= f.input :date, as: :string, input_html: { class: "datepicker" } %>
+    <%= f.input :text, :label => 'Description' %>
+
+    <p>From</p>
+    <%= f.input :amount %>
+    <%= f.association :account, collection: accounts %>
+
+    <p>To</p>
+    <%= f.input :trans_amount, label: "Amount"  %>
+    <%= f.association :trans_account, collection: accounts, label: "Account" %>
+
+    <%= f.input :transaction_type_id, as: :hidden %>
+
+  <div class="form-actions">
+    <%= f.submit :class=>"btn btn-primary" %>
+    <%= link_to "Cancel", root_path, :class=>"btn" %>
+  </div>
+<% end %>
