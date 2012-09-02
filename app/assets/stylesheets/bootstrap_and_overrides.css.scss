@@ -9,11 +9,7 @@
       width:85px;
     }
     &.type {
-      width: 90px;
-      div.divider {
-        width:30px;
-        float:right;
-      }
+      width: 85px;
     }
     &.amount {
       width:80px;
@@ -24,6 +20,22 @@
     &.control {
       width: 50px;
     }
+  }
+  tr.transfer {
+    td {
+      .direction {
+        text-align:right;
+      }
+      > div {
+        display: table; 
+        position: static;
+        > div {
+          display: table-cell; 
+          vertical-align: middle; 
+          width: 100%;
+        }
+      } 
+    }   
   }
 }
 
@@ -55,9 +67,16 @@
   display: none;
 }
 
-span.right {
-  float:right;
-  clear:both;
+div {
+  &.right {
+    float:right;
+  }
+  &.left {
+    float:left;
+  }  
+  &.clear {
+    clear:both;
+  }
 }
 
 div.divider {
