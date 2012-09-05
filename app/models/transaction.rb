@@ -67,15 +67,13 @@ class Transaction < ActiveRecord::Base
   end
 
   def update_balance_create(t = self)
-    offset = get_amount_with_sign(t)
-
-    Account.update_counters t.account_id, :balance => offset
+    Account.update_counters t.account_id, :balance_cents => t.amount_cents*get_sign(t)
+    Account.update_counters t.trans_account_id, :balance_cents => t.trans_amount_cents if t.is_transfer?
   end
 
   def update_balance_destroy(t = self)
-    offset = get_amount_with_sign(t)
-
-    Account.update_counters t.account_id, :balance => offset*(-1)
+    Account.update_counters t.account_id, :balance_cents => t.amount_cents*(-1)*get_sign(t)
+    Account.update_counters t.trans_account_id, :balance_cents => t.trans_amount_cents*(-1) if t.is_transfer?
   end
 
   def update_balance_update
@@ -85,12 +83,15 @@ class Transaction < ActiveRecord::Base
     update_balance_create(self)
   end
 
-  def get_amount_with_sign(t = self)
-    sign_amount = case TransactionType.find(t.transaction_type_id).name
-      when "outlay" then t.amount*(-1)
-       else t.amount
+  def get_sign(t = self)
+    case t.transaction_type_name
+      when "outlay", "transfer"
+        -1
+      when "income"
+        1
+      else
+        1
+        # Add Handle error there !!!
     end
-
-    return sign_amount
   end
 end

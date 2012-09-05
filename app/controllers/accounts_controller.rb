@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
         format.html { redirect_to accounts_path, notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html :edit
+        format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end

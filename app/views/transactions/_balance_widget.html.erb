@@ -4,7 +4,7 @@
   <% accounts.each do |account| %>
     <tr id="<%= dom_id(account) %>">
       <td class="key"><%= account.name %>:</td>
-      <td class="value"><%= account.balance.to_f / 100 %></td>
+      <td class="value"><%= account.balance %></td>
     </tr>
   <% end %>
   </table>
