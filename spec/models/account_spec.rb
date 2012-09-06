@@ -62,9 +62,16 @@ describe Account do
     it { should be_valid }
   end  
 
-# Tests for balance
+# Tests for BALANCE
   describe "when balance set empty" do
     before { @account.balance = "" }
+    it { should be_valid }
+    it { @account.balance.should == 0.0 }
+    it { @account.balance_cents.should == 0 }
+  end
+
+  describe "when balance set 0" do
+    before { @account.balance = "0.0" }
     it { should be_valid }
     it { @account.balance.should == 0.0 }
     it { @account.balance_cents.should == 0 }
@@ -88,27 +95,34 @@ describe Account do
     it { @account.balance_cents.should == 9999999999 }
   end
 
-# Tests for balance_CENTS
-  describe "when balance set empty" do
+# Tests for BALANCE_CENTS
+  describe "when balance_cents set empty" do
     before { @account.balance_cents = nil }
     it { should_not be_valid }
     it { @account.balance.should == nil }
     it { @account.balance_cents.should == nil }
   end
 
-  describe "when balance is 10.99" do
+  describe "when balance_cents set empty" do
+    before { @account.balance_cents = 0 }
+    it { should be_valid }
+    it { @account.balance.should == 0.0 }
+    it { @account.balance_cents.should == 0 }
+  end
+
+  describe "when balance_cents is 10.99" do
     before { @account.balance_cents = 1099 }
     it { should be_valid }
     it { @account.balance.should == 10.99 }
   end  
 
-  describe "when balance is < 0" do
+  describe "when balance_cents is < 0" do
     before { @account.balance_cents = -1099 }
     it { should be_valid }
     it { @account.balance.should == -10.99 }
   end
 
-  describe "when balance is big (99 999 999.99)" do
+  describe "when balance_cents is big (99 999 999.99)" do
     before { @account.balance_cents = 9999999999 }
     it { should be_valid }
     it { @account.balance.should == 99999999.99 }
@@ -135,7 +149,12 @@ describe Account do
     end
     it "should not allow access to trans_balance_cents" do
       expect { Account.new(balance_cents: 0) }.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end  
+    end
   end
 
+# UNIQNESS
+  describe "when account already exists" do
+    before { @account.save }
+    it { @account.dup.save.should be_false }
+  end
 end

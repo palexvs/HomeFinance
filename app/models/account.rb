@@ -16,7 +16,8 @@ class Account < ActiveRecord::Base
   attr_accessible :name, :description, :currency, :start_balance
 
   monetize :balance_cents
-  validates :name, :presence => true, :length => { :maximum => 15 }
+  validates :name, :presence => true, :length => { :maximum => 15 }, 
+                    :uniqueness => { :scope => [:currency, :user_id], :message => "Account with such Name and Currency already exists" }
   validates :description, :length => { :maximum => 255 }
   validates :currency, :presence => true, :length => {:is => 3}, :inclusion => { :in => Finance::Application.config.currency_list }
   validates :balance, :numericality => true

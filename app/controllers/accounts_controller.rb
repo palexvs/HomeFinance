@@ -31,7 +31,7 @@ class AccountsController < ApplicationController
         format.html { redirect_to accounts_path, notice: 'Account was successfully created.' }
         format.json { render json: @account, status: :created, location: @account }
       else
-        format.html "new"
+        format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end

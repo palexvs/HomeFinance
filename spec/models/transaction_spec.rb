@@ -95,6 +95,13 @@ describe Transaction do
     it { @t.amount_cents.should == 0 }
   end
 
+  describe "when amount set 0" do
+    before { @t.amount = 0 }
+    it { should be_valid }
+    it { @t.amount.should == 0.0 }
+    it { @t.amount_cents.should == 0 }
+  end
+
   describe "when amount is 10.99" do
     before { @t.amount = 10.99 }
     it { should be_valid }
@@ -114,26 +121,33 @@ describe Transaction do
   end
 
 # Tests for AMOUNT_CENTS
-  describe "when amount set empty" do
+  describe "when amount_cents set empty" do
     before { @t.amount_cents = nil }
     it { should_not be_valid }
     it { @t.amount.should == nil }
     it { @t.amount_cents.should == nil }
   end
 
-  describe "when amount is 10.99" do
+  describe "when amount_cents set 0" do
+    before { @t.amount_cents = "0.0" }
+    it { should be_valid }
+    it { @t.amount.should == 0.0 }
+    it { @t.amount_cents.should == 0 }
+  end
+
+  describe "when amount_cents is 10.99" do
     before { @t.amount_cents = 1099 }
     it { should be_valid }
     it { @t.amount.should == 10.99 }
   end  
 
-  describe "when amount is < 0" do
+  describe "when amount_cents is < 0" do
     before { @t.amount_cents = -1099 }
     it { should_not be_valid }
     it { @t.amount.should == -10.99 }
   end
 
-  describe "when amount is big (99 999 999.99)" do
+  describe "when amount_cents is big (99 999 999.99)" do
     before { @t.amount_cents = 9999999999 }
     it { should be_valid }
     it { @t.amount.should == 99999999.99 }
