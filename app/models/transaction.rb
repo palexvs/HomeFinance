@@ -4,20 +4,21 @@
 #
 #  id                  :integer          not null, primary key
 #  text                :string(255)
-#  amount_cents        :integer
-#  date                :date
+#  amount_cents        :integer          default(0), not null
+#  date                :date             not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  transaction_type_id :integer          not null
-#  account_id          :integer          default(1), not null
-#  user_id             :integer
+#  account_id          :integer          not null
+#  user_id             :integer          not null
 #  trans_account_id    :integer
-#  trans_amount_cents  :integer
+#  trans_amount_cents  :integer          default(0), not null
 #
 
 class Transaction < ActiveRecord::Base
   attr_accessible :text, :date, :transaction_type_id, :amount, :account_id, :trans_amount, :trans_account_id
 
+  validates :text, :length => { :maximum => 255 }
   validates :date, :presence => true
   validates :transaction_type_id, :presence => true
  
@@ -34,11 +35,14 @@ class Transaction < ActiveRecord::Base
   delegate :name, :to => :trans_account, :prefix => true  
 
   validate :has_access_to_account
+  validate :date_is_date?
+  validate :transaction_type_exists?
 
   belongs_to :transaction_type
   delegate :name, :to => :transaction_type, :prefix => true
 
   belongs_to :user
+  validates :user_id, :presence => true
 
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account, :trans_account)
@@ -53,6 +57,18 @@ class Transaction < ActiveRecord::Base
   end
 
   private
+
+  def transaction_type_exists?
+    if !TransactionType.exists?(transaction_type_id)
+      errors.add(:transaction_type_id, 'Does not exist') 
+    end
+  end
+
+  def date_is_date?
+    if !date.is_a?(Date)
+      errors.add(:date, 'Must be a valid date')
+    end
+  end
 
   def has_access_to_account
     if Account.where("id = ? AND user_id = ?", account_id, user_id).empty?

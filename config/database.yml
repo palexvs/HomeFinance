@@ -17,7 +17,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: finance_db
+  database: finance_db_test
   pool: 5
   username: postgres
   password: test

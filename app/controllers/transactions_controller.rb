@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  before_filter :loged_in
   before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
   before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy]
 

@@ -5,7 +5,7 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg', '0.14.0'
+gem 'pg', '0.14.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,6 +19,17 @@ group :assets do
   gem 'uglifier', '>= 1.2.7'
   
   gem 'bootstrap-sass', '~>2.0.4.0'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '2.11.0'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
+#  gem 'capybara-webkit'
+  gem 'factory_girl_rails', '4.0.0'
+  gem 'database_cleaner', '0.8.0'
 end
 
 gem 'money-rails'

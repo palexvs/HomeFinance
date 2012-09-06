@@ -3,20 +3,21 @@
 # Table name: accounts
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)
+#  name          :string(255)      not null
 #  description   :string(255)
 #  currency      :string(3)        not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  balance_cents :integer          default(0), not null
-#  user_id       :integer
+#  user_id       :integer          not null
 #
 
 class Account < ActiveRecord::Base
   attr_accessible :name, :description, :currency, :start_balance
 
   monetize :balance_cents
-  validates :name, :presence => true
+  validates :name, :presence => true, :length => { :maximum => 15 }
+  validates :description, :length => { :maximum => 255 }
   validates :currency, :presence => true, :length => {:is => 3}, :inclusion => { :in => Finance::Application.config.currency_list }
   validates :balance, :numericality => true
   validates :start_balance, :numericality => true, :allow_nil => true
@@ -24,8 +25,8 @@ class Account < ActiveRecord::Base
   has_many :transaction, :class_name => 'Transaction', :foreign_key => 'account_id'
   has_many :trans_transaction, :class_name => 'Transaction', :foreign_key => 'trans_account_id'
 
-
   belongs_to :user
+  validates :user_id, :presence => true
 
   DATE_FOR_BALANCE_TRANSACTION = DateTime.new(1900).to_s(:db)
 

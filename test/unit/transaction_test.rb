@@ -4,15 +4,15 @@
 #
 #  id                  :integer          not null, primary key
 #  text                :string(255)
-#  amount_cents        :integer
-#  date                :date
+#  amount_cents        :integer          default(0), not null
+#  date                :date             not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  transaction_type_id :integer          not null
-#  account_id          :integer          default(1), not null
-#  user_id             :integer
+#  account_id          :integer          not null
+#  user_id             :integer          not null
 #  trans_account_id    :integer
-#  trans_amount_cents  :integer
+#  trans_amount_cents  :integer          default(0), not null
 #
 
 require 'test_helper'

@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_filter :loged_in
   before_filter :get_account_by_id, only: [:edit, :show, :update, :destroy]
 
   def index

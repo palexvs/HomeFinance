@@ -3,13 +3,13 @@
 # Table name: accounts
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)
+#  name          :string(255)      not null
 #  description   :string(255)
 #  currency      :string(3)        not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  balance_cents :integer          default(0), not null
-#  user_id       :integer
+#  user_id       :integer          not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
