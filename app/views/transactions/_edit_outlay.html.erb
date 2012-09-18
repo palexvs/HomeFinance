@@ -1,0 +1,24 @@
+<div class="modal hide fade" id="myModal">
+<%= simple_form_for(transaction, remote: true, :format => :json, :html => { :class => "form-horizontal trans-edit"}) do |f| %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3><%= controller.action_name.capitalize %> Outlay</h3>
+  </div>
+  <div class="modal-body">
+    <div id="alert-area-modal"></div>
+    
+    <%= f.input :date, as: :string, input_html: { class: "datepicker" } %>
+    <%= f.input :text, :label => 'Description' %>
+    <%= f.input :amount, input_html: { value: transaction.amount } %>
+    
+    <%= f.input :transaction_type_id, as: :hidden %>
+    <%= f.association :account, collection: accounts %>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Cancel", '#', :class=>"btn", :"data-dismiss" => "modal" %>
+    <%= f.submit :class=>"btn btn-primary" %>
+  </div>
+
+  <%= debug(transaction) if Rails.env.development? %>
+<% end %>
+</div>

@@ -32,8 +32,8 @@ group :test do
   gem 'database_cleaner', '0.8.0'
 end
 
-gem 'money-rails'
-gem 'bootstrap-datepicker-rails', '~> 0.6.17'
+gem 'best_in_place'#, :git => "https://github.com/gposton/best_in_place.git"
+gem 'money-rails', :git => "https://github.com/RubyMoney/money-rails.git"
 gem 'simple_form'
 gem 'jquery-rails'
 

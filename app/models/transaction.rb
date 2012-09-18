@@ -22,7 +22,7 @@ class Transaction < ActiveRecord::Base
   validates :date, :presence => true
   validates :transaction_type_id, :presence => true
  
-  monetize :amount_cents
+  monetize :amount_cents, :allow_nil => true
   validates :amount, :presence => true, :numericality => { :greater_than_or_equal_to  => 0 }
   validates :account_id, :presence => true
   belongs_to :account, :class_name => "Account", :foreign_key => :account_id

@@ -1,0 +1,44 @@
+<tr id="<%= dom_id(transaction) %>" class="<%= transaction.transaction_type_name %>" >
+  <td class="date" ><%= best_in_place transaction, :date, :type => :date %></td>
+  <td class="description" ><%= best_in_place transaction, :text, :type => :input %></td>
+
+  <% if transaction.is_transfer? %>
+    <td class="type">
+      <div>
+        <div><%= transaction.transaction_type_name %></div>
+        <div class="direction"> 
+          from:
+          <div class="divider"></div>
+          to:
+        </div>
+      </div>
+    </td>
+    <td class="amount">
+      <div><div>
+        <%= transaction.amount %>
+        <div class="divider"></div>
+        <%= transaction.trans_amount %>
+      </div></div>
+    </td>
+    <td class="account">
+      <div><div>
+        <%= transaction.account_name %>
+        <div class="divider"></div>
+        <%= transaction.trans_account_name %>
+      </div></div>
+    </td>
+  <% else %>
+    <td class="type"><%= transaction.transaction_type_name %></td>
+    <td class="amount"><%= best_in_place transaction, :amount, :type => :input %></td>
+    <td class="account">
+      <%= best_in_place transaction, :account_id, :type => :select, :collection => accounts_list %>
+    </td>
+  <% end %>
+
+  <td class="control">
+    <ul class="nav nav-pills">
+      <li><%= link_to [:edit, transaction], remote: true, class: "transaction-edit" do %><i class="icon-pencil"></i><% end %></li>
+      <li><%= link_to transaction, confirm: 'Are you sure?', method: :delete, :remote => true, "data-type" => :json do %><i class="icon-trash"></i><% end %></li>
+    </ul>
+  </td>
+</tr>

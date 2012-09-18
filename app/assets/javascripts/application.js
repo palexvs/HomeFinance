@@ -14,5 +14,10 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap
-//= require bootstrap-datepicker
+//= require best_in_place
 //= require_tree .
+
+
+//jQuery(function($){
+//  $.extend($.fn.datepicker.defaults, { format: 'yyyy-mm-dd' });
+//});

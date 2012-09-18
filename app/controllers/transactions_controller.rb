@@ -16,28 +16,39 @@ class TransactionsController < ApplicationController
 
     @transaction = Transaction.new(default)
 
-    render transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction }
+    respond_to do |format|
+      format.html { render partial: transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction } }
+      format.json { render :ok }
+    end
   end
 
   def create
     @transaction = current_user.transaction.build(params[:transaction])
 
-    if @transaction.save
-      redirect_to(root_path, :notice => 'Transaction was successfully created.')
-    else
-      render transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction }
+    respond_to do |format|
+      if @transaction.save
+        format.json { redirect_to(root_path, :notice => 'Transaction was successfully created.') }
+      else
+        format.json { render json: @transaction.errors.full_messages, status: :unprocessable_entity }
+      end
     end
   end
 
   def edit
-    render transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction }
+    respond_to do |format|
+      format.html { render partial: transaction_edit_form, locals: { accounts: @accounts, transaction: @transaction }}
+    end
   end
 
   def update
-    if @transaction.update_attributes(params[:transaction])
-      redirect_to(root_path, :notice => 'Transaction was successfully updated.')
-    else
-      render :edit
+    respond_to do |format|
+      if @transaction.update_attributes(params[:transaction])
+        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
+        format.json { head :no_content }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @transaction.errors.full_messages, status: :unprocessable_entity }
+      end
     end
   end
 
