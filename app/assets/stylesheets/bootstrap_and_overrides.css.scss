@@ -3,6 +3,16 @@
 
 // Accounts Table
 .accounts-list, .transactions-list {
+  select {
+    width: 100%;
+    height:auto;
+    margin:0;
+    padding:0;
+  }
+  span {
+    width:100%;
+    display:block;
+  }
   td {
     vertical-align: middle;
     &.date {
@@ -16,6 +26,9 @@
     }
     &.currency {
       width: 80px;
+    }
+    &.account {
+      width: 120px;
     }
     &.control {
       width: 50px;
