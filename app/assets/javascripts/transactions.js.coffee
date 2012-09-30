@@ -9,7 +9,7 @@ jQuery ->
     .on('ajax:success', 'a.transaction-new', (xhr, data) -> ShowTransEditForm(data))
     .on('ajax:error', 'a.transaction-edit', (xhr, err) -> HandleCommonErr(err))
     .on('ajax:success', 'a.transaction-edit', (xhr, data) -> ShowTransEditForm(data))    
-    .on("ajax:error", '.best_in_place', (xhr, err) -> HandleCommonErr(err))
+    .on('best_in_place:error', (xhr, err) -> HandleCommonErr(err))
 #    .on("ajax:success", '.best_in_place', -> alert('Name updated for '+$(this).data('userName')) )
 
 # Show Outlay Edit Form

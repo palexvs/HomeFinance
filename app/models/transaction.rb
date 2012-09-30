@@ -14,7 +14,6 @@
 #  trans_account_id    :integer
 #  trans_amount_cents  :integer          default(0), not null
 #
-
 class Transaction < ActiveRecord::Base
   attr_accessible :text, :date, :transaction_type_id, :amount, :account_id, :trans_amount, :trans_account_id
 
@@ -22,13 +21,18 @@ class Transaction < ActiveRecord::Base
   validates :date, :presence => true
   validates :transaction_type_id, :presence => true
  
-  monetize :amount_cents, :allow_nil => true
+  composed_of :amount, :class_name => "Money", :mapping => %w(amount_cents cents),
+#              :converter => Proc.new { |value| Money.to_money?(value) ? Money.to_money(value) :raise(ArgumentError, "Can't convert to Money") }
+              :converter => Proc.new { |value| Money.to_money(value) }
   validates :amount, :presence => true, :numericality => { :greater_than_or_equal_to  => 0 }
+  validates_associated :amount
+
   validates :account_id, :presence => true
   belongs_to :account, :class_name => "Account", :foreign_key => :account_id
   delegate :name, :to => :account, :prefix => true  
 
-  monetize :trans_amount_cents, :allow_nil => true
+  composed_of :trans_amount, :class_name => "Money", :mapping => %w(trans_amount_cents cents),
+              :converter => Proc.new { |value| Money.to_money(value) }
   validates :trans_amount, :presence => true, :numericality => { :greater_than_or_equal_to  => 0 }, :if => :is_transfer?
   validates :trans_account_id, :presence => true, :if => :is_transfer?
   belongs_to :trans_account, :class_name => "Account", :foreign_key => :trans_account_id  

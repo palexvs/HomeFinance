@@ -88,18 +88,26 @@
 	"buffers":
 	[
 		{
-			"file": "Gemfile",
+			"file": "app/models/transaction.rb",
 			"settings":
 			{
-				"buffer_size": 1239,
+				"buffer_size": 3982,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/assets/stylesheets/bootstrap_and_overrides.css.scss",
+			"file": "app/models/account.rb",
 			"settings":
 			{
-				"buffer_size": 1391,
+				"buffer_size": 1431,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/money.rb",
+			"settings":
+			{
+				"buffer_size": 883,
 				"line_ending": "Unix"
 			}
 		},
@@ -112,10 +120,10 @@
 			}
 		},
 		{
-			"file": "app/assets/stylesheets/best_in_place.css.scss",
+			"file": "spec/models/transaction_spec.rb",
 			"settings":
 			{
-				"buffer_size": 751,
+				"buffer_size": 5477,
 				"line_ending": "Unix"
 			}
 		}
@@ -123,11 +131,19 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 96.0,
 		"selected_items":
 		[
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"syntax ru",
+				"Set Syntax: Ruby"
+			]
 		],
-		"width": 575.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -144,20 +160,31 @@
 	},
 	"file_history":
 	[
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/bootstrap_and_overrides.css.scss",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/Gemfile",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/datatables/transactions_datatable.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_transaction.html.erb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/controllers/transactions_controller.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/transaction.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_transaction_list.html.erb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/transactions.js.coffee",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/application.css",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/spec/factories.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/money_test.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/money.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/accounts/_form.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_header.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_func_menu.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/application.js",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_edit_outlay.html.erb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/best_in_place.css.scss",
-		"/home/alexvs/.rvm/gems/ruby-1.9.3-p194@rails3tutorial2ndEd/bundler/gems/money-rails-c011718da3bf/lib/money-rails/active_record/monetizable.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/transactions.js.coffee",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/common.js.coffee",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/.gitkeep",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/Gemfile",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/sessions.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/transaction.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/transaction_type.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/user.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/account.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/best_in_place.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_transaction.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/bootstrap_and_overrides.css.scss",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/datatables/transactions_datatable.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/controllers/transactions_controller.rb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_transaction_list.html.erb",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/application.css",
+		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_edit_outlay.html.erb",
+		"/home/alexvs/.rvm/gems/ruby-1.9.3-p194@rails3tutorial2ndEd/bundler/gems/money-rails-c011718da3bf/lib/money-rails/active_record/monetizable.rb",
 		"/home/alexvs/.rvm/gems/ruby-1.9.3-p194@rails3tutorial2ndEd/bundler/gems/money-rails-0929de52e0f1/lib/money-rails/active_record/monetizable.rb",
 		"/home/alexvs/.rvm/gems/ruby-1.9.3-p194@rails3tutorial2ndEd/bundler/gems/money-rails-0929de52e0f1/lib/money-rails/active_record/validator.rb",
 		"/home/alexvs/.rvm/gems/ruby-1.9.3-p194@rails3tutorial2ndEd/bundler/gems/money-rails-0929de52e0f1/lib/money-rails/hooks.rb",
@@ -165,7 +192,6 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/index.html.erb",
 		"/home/alexvs/.rvm/gems/ruby-1.9.3-p194@rails3tutorial2ndEd/bundler/gems/best_in_place-6826c9fe49bf/lib/best_in_place/controller_extensions.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/application.html.erb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/common.js.coffee",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/initializers/money.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/jquery-ui-1.8.22.custom.css",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/bootstrap.css",
@@ -174,9 +200,6 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_edit_income.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/_transaction_list_item.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/common.js.coffe",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/spec/factories.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/user.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/account.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120906180116_uniq_account.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/controllers/accounts_controller.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/spec/models/account_spec.rb",
@@ -184,7 +207,6 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/spec/models/accolunt_spec.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/seeds.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/spec/spec_helper.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/accounts/_form.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/environments/production.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/database.yml",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/routes.rb",
@@ -204,7 +226,6 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/edit_outlay.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/transactions/edit_income.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120902183023_rename_amount_column_in_transactions.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/models/sessions.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120901171135_extend_transaction_to_transfer.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120719193856_add_user_id_to_accounts.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120718122501_create_sessions.rb",
@@ -247,8 +268,6 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/helpers/application_helper.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/helpers/transactions_helper.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/helpers/users_helper.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_func_menu.html.erb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/views/layouts/_header.html.erb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/javascripts/alert.js",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120309170406_add_account_id_coulumn_for_transaction.rb",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120314003853_fill_transaction_types.rb",
@@ -268,10 +287,7 @@
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/transactions.css.scss",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/users.css.scss",
 		"/home/alexvs/Aptana Studio 3 Workspace/Finance/app/assets/stylesheets/custom.css.scss",
-		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/assets/stylesheets/application.css",
-		"/home/alexvs/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/db/migrate/20120718094826_add_password_digest.rb",
-		"/home/alexvs/Aptana Studio 3 Workspace/Finance/config/application.rb"
+		"/home/alexvs/Aptana Studio 3 Workspace/rails_project/sample_app/app/assets/stylesheets/application.css"
 	],
 	"find":
 	{
@@ -291,6 +307,20 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"0.0",
+			"amount",
+			"fractional",
+			"cents",
+			"@cents",
+			"cents",
+			"@cents",
+			"unit",
+			"cur",
+			"amount_cents",
+			"amount",
+			"Mon",
+			"amount",
+			"number",
 			"number_to_currency",
 			"iSortCol_0",
 			"sort",
@@ -382,6 +412,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"amount",
+			"amount_cents",
 			"transaction",
 			"Transaction",
 			".ui-datepicker:",
@@ -409,23 +441,23 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Gemfile",
+					"file": "app/models/transaction.rb",
 					"settings":
 					{
-						"buffer_size": 1239,
+						"buffer_size": 3982,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								435,
-								435
+								1070,
+								1070
 							]
 						],
 						"settings":
@@ -442,23 +474,23 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/assets/stylesheets/bootstrap_and_overrides.css.scss",
+					"file": "app/models/account.rb",
 					"settings":
 					{
-						"buffer_size": 1391,
+						"buffer_size": 1431,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								401,
-								401
+								1060,
+								1060
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -470,6 +502,34 @@
 				},
 				{
 					"buffer": 2,
+					"file": "app/models/money.rb",
+					"settings":
+					{
+						"buffer_size": 883,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								133,
+								133
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "app/views/transactions/_transaction.html.erb",
 					"settings":
 					{
@@ -480,8 +540,8 @@
 						"selection":
 						[
 							[
-								109,
-								109
+								658,
+								658
 							]
 						],
 						"settings":
@@ -497,29 +557,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "app/assets/stylesheets/best_in_place.css.scss",
+					"buffer": 4,
+					"file": "spec/models/transaction_spec.rb",
 					"settings":
 					{
-						"buffer_size": 751,
+						"buffer_size": 5477,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								342,
-								342
+								3396,
+								3396
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1628.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -529,7 +589,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -569,16 +629,24 @@
 		"selected_items":
 		[
 			[
+				"_spe",
+				"spec/models/transaction_spec.rb"
+			],
+			[
+				"mo",
+				"app/models/money.rb"
+			],
+			[
+				"ge",
+				"Gemfile"
+			],
+			[
 				"gem",
 				"Gemfile"
 			],
 			[
 				"transa",
 				"app/models/transaction.rb"
-			],
-			[
-				"ge",
-				"Gemfile"
 			],
 			[
 				"trans",

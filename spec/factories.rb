@@ -14,7 +14,7 @@ FactoryGirl.define do
     text "test transaction"
     date Date.current().to_s(:db)
     transaction_type_id 1 # Outlay
-    amount 100.99
+    amount 100.32
     account
     user
   end  
