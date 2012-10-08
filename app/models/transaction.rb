@@ -46,7 +46,7 @@ class Transaction < ActiveRecord::Base
 
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account, :trans_account)
-  scope :order_date, order("date desc,id desc")
+  default_scope order("date desc,id desc")
 
   before_create :update_balance_create
   before_destroy :update_balance_destroy

@@ -11,11 +11,13 @@ jQuery ->
     .on('ajax:success', 'a.transaction-edit', (xhr, data) -> ShowTransEditForm(data))    
     .on("ajax:error", '.best_in_place', (xhr, err) -> HandleCommonErr(err))
     .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction(data))        
-#    .on("ajax:success", '.best_in_place', -> alert('Name updated for '+$(this).data('userName')) )
+    .on("ajax:success", '.best_in_place', -> UpdateTransViaBestInPlace() )
 
+
+UpdateTransViaBestInPlace = () ->
+  LoadBalanceWidget()
 
 RemoveTransaction= (data) ->
-  newAlert('success', 'Transaction was successfully delete.')
   $('tr#transaction_' + data['id']).fadeOut(500, () -> $(this).remove() )
 
 

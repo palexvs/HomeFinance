@@ -29,6 +29,8 @@ class Account < ActiveRecord::Base
   belongs_to :user
   validates :user_id, :presence => true
 
+  default_scope order(:id)
+
   def as_json (options = nil)
     options ||= {}
     options[:methods] = ((options[:methods] || []) + [:balance])

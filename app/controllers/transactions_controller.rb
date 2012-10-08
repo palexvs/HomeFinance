@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy]
 
   def index
-    @transactions = current_user.transaction.with_type.with_account.order_date.all
+    @transactions = current_user.transaction.with_type.with_account.all
     respond_to do |format|
       if params[:partial]
         format.html { render partial: 'transaction_list', :locals => { accounts: @accounts } }
