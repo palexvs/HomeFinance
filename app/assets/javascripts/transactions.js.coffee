@@ -23,4 +23,16 @@ ShowTransEditForm= (html) ->
 # Update Transaction List
 UpdateTrans= () ->
   CloseModalWindow()
-#  LoadProjectList()
+  LoadProjectList()
+  LoadBalanceWidget()
+
+LoadProjectList= () ->
+  $.ajax
+    type: 'GET'
+    url: '/transactions'
+    data: {partial: true}
+    dataType: 'html'
+    error: (jqXHR, textStatus, errorThrown) ->
+      HandleCommonErr(textStatus)
+    success: (data, textStatus, jqXHR) ->
+        $('#transactions').html "#{data}"

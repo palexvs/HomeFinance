@@ -52,6 +52,13 @@ class Transaction < ActiveRecord::Base
   before_destroy :update_balance_destroy
   before_update :update_balance_update
 
+
+  def as_json (options = nil)
+    options ||= {}
+    options[:methods] = ((options[:methods] || []) + [:amount,:trans_amount])
+    super options
+  end
+
   def is_transfer?
     transaction_type_id == 3
   end

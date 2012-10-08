@@ -16,10 +16,14 @@
 </div>
 
 
-<%= render 'transaction_list', accounts: @accounts %>
+<div id="transactions">
+	<%= render 'transaction_list', accounts: @accounts %>
+</div>
 
 </div>
 
 <div class="span2">
-<%= render "balance_widget", accounts: @accounts %>
+  <div id="balance_widget">
+    <%= render "accounts/balance_widget", accounts: @accounts %>
+  </div>
 </div>

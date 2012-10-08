@@ -33,7 +33,9 @@ group :test do
 end
 
 gem 'best_in_place'#, :git => "https://github.com/gposton/best_in_place.git"
-gem 'money-rails', :git => "https://github.com/RubyMoney/money-rails.git"
+gem 'money-rails', :git => "https://github.com/palexvs/money-rails"
+                    #:path => "/home/alexvs/rails_work/money-rails" 
+                    #:git => "https://github.com/RubyMoney/money-rails.git"
 gem 'simple_form'
 gem 'jquery-rails'
 

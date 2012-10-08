@@ -5,6 +5,13 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = current_user.transaction.with_type.with_account.order_date.all
+    respond_to do |format|
+      if params[:partial]
+        format.html { render partial: 'transaction_list', :locals => { accounts: @accounts } }
+      else
+        format.html # index.html.erb
+      end
+    end
   end
 
   def show

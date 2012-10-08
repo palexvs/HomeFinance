@@ -1,5 +1,5 @@
 <div class="modal hide fade" id="myModal">
-<%= simple_form_for(transaction, remote: true, :html => { :class => "form-horizontal trans-edit"}) do |f| %>
+<%= simple_form_for(transaction, remote: true, :format => :json, :html => { :class => "form-horizontal trans-edit"}) do |f| %>
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3><%= controller.action_name.capitalize %> Income</h3>
@@ -18,5 +18,7 @@
     <%= link_to "Cancel", '#', :class=>"btn", :"data-dismiss" => "modal" %>
     <%= f.submit :class=>"btn btn-primary" %>
   </div>
+
+  <%= debug(transaction) if Rails.env.development? %>
 <% end %>
 </div>

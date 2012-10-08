@@ -13,14 +13,14 @@
 #
 
 class Account < ActiveRecord::Base
-  attr_accessible :name, :description, :currency, :start_balance
+  attr_accessible :name, :description, :currency
 
   monetize :balance_cents
+  validates :balance, :numericality => true
   validates :name, :presence => true, :length => { :maximum => 15 }, 
                     :uniqueness => { :scope => [:currency, :user_id], :message => "Account with such Name and Currency already exists" }
   validates :description, :length => { :maximum => 255 }
   validates :currency, :presence => true, :length => {:is => 3}, :inclusion => { :in => Finance::Application.config.currency_list }
-  validates :balance, :numericality => true
   validates :start_balance, :numericality => true, :allow_nil => true
 
   has_many :transaction, :class_name => 'Transaction', :foreign_key => 'account_id'
@@ -29,33 +29,10 @@ class Account < ActiveRecord::Base
   belongs_to :user
   validates :user_id, :presence => true
 
-  DATE_FOR_BALANCE_TRANSACTION = DateTime.new(1900).to_s(:db)
-
-  def start_balance
-    t = Transaction.where("account_id = ? AND date = ?", id, DATE_FOR_BALANCE_TRANSACTION).first_or_initialize
-    t.amount
-  end
-
-  def start_balance=(amount)
-    @start_balance = amount
-  end
-
-  after_save :set_start_balance
-
-  private
-
-  def set_start_balance
-    if !@start_balance.nil?
-      data = { amount: @start_balance,
-              date: DATE_FOR_BALANCE_TRANSACTION, 
-              text: "set start balance", 
-              account_id: id,
-              transaction_type_id: ( @start_balance.to_f >= 0 ? 2 : 1 ) } # 1 - outlay, 2 - income
-      t = User.find(user_id).transaction.where("account_id = ? AND date = ?", id, DATE_FOR_BALANCE_TRANSACTION).first_or_initialize
-      if !t.update_attributes(data)
-        # DO SOMTHING
-      end
-    end
+  def as_json (options = nil)
+    options ||= {}
+    options[:methods] = ((options[:methods] || []) + [:balance])
+    super options
   end
 
 end

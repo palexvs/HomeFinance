@@ -9,7 +9,7 @@
     
     <%= f.input :date, as: :string, input_html: { class: "datepicker" } %>
     <%= f.input :text, :label => 'Description' %>
-    <%= f.input :amount, input_html: { value: transaction.amount } %>
+    <%= f.input :amount %>
     
     <%= f.input :transaction_type_id, as: :hidden %>
     <%= f.association :account, collection: accounts %>

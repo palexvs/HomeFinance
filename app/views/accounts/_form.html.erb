@@ -18,7 +18,6 @@
   <%= f.input :description %>
 
   <%= f.input :currency, :collection => Finance::Application.config.currency_list, :selected => 'UAH'%>
-  <%= f.input :start_balance %>
 
   <div class="form-actions">
     <%= f.submit :class => 'btn btn-primary' %>

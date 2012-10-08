@@ -7,7 +7,8 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @accounts }
+#      format.json { render json: @accounts.to_json(:only => [:name, :description, :currency, :balance_cents]) }
+      format.json { render json: @accounts.to_json(:methods => [:balance]) }
     end
   end
 

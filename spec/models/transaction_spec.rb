@@ -90,9 +90,7 @@ describe Transaction do
 # Tests for AMOUNT
   describe "when amount set empty" do
     before { @t.amount = "" }
-    it { should be_valid }
-    it { @t.amount.should == 0.0 }
-    it { @t.amount_cents.should == 0 }
+    it { should_not be_valid }
   end
 
   describe "when amount set 0" do
