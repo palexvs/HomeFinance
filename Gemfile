@@ -18,7 +18,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.2.7'
   
-  gem 'bootstrap-sass', '~>2.0.4.0'
+  gem 'bootstrap-sass', '~>2.1.0.0'
 end
 
 group :development, :test do
