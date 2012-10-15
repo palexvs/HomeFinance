@@ -21,7 +21,6 @@ class Account < ActiveRecord::Base
                     :uniqueness => { :scope => [:currency, :user_id], :message => "Account with such Name and Currency already exists" }
   validates :description, :length => { :maximum => 255 }
   validates :currency, :presence => true, :length => {:is => 3}, :inclusion => { :in => Finance::Application.config.currency_list }
-  validates :start_balance, :numericality => true, :allow_nil => true
 
   has_many :transaction, :class_name => 'Transaction', :foreign_key => 'account_id'
   has_many :trans_transaction, :class_name => 'Transaction', :foreign_key => 'trans_account_id'
