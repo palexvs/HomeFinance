@@ -3,7 +3,7 @@
 	<% accounts.each do |account| %>
 		<tr>
 		  <td class="key"><%= account.name %>:</td>
-		  <td class="value"><%= account.balance %></td>
+		  <td class="value"><%= account.balance %> <%= account.balance.currency.symbol %></td>
 		</tr>
 	<% end %>
 </table>

@@ -14,5 +14,8 @@
 BalanceWidgetTemplate = (accounts) ->
 	html = ""
 	for account in accounts
-		html += "<tr><td class='key'>#{account.name}:</td><td class='value'>#{account.balance.money.to_s}</td></tr>" 
+		html += "<tr>
+                <td class='key'>#{account.name}:</td>
+                <td class='value'>#{account.balance.money.to_s} #{account.balance.money.currency.currency.html_entity}</td>
+              </tr>" 
 	html
