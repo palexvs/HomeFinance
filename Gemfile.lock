@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/bernat/best_in_place
+  revision: 966213713c903d977ee4950a8f53b646173d81b4
+  specs:
+    best_in_place (1.1.2)
+      jquery-rails
+      rails (~> 3.1)
+
+GIT
   remote: https://github.com/palexvs/money-rails
   revision: 2e2ae178ab764ff93d38dc01e62ed42ba916006c
   specs:
@@ -42,9 +50,6 @@ GEM
       rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    best_in_place (1.1.2)
-      jquery-rails
-      rails (~> 3.1)
     bootstrap-sass (2.1.0.0)
     builder (3.0.3)
     capybara (1.1.2)
@@ -63,15 +68,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
-    database_cleaner (0.8.0)
+    database_cleaner (0.9.1)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (4.0.0)
+    factory_girl (4.1.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.0.0)
-      factory_girl (~> 4.0.0)
+    factory_girl_rails (4.1.0)
+      factory_girl (~> 4.1.0)
       railties (>= 3.0.0)
     ffi (1.1.5)
     hike (1.2.1)
@@ -128,7 +133,7 @@ GEM
     rspec-expectations (2.11.3)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.11.3)
-    rspec-rails (2.11.0)
+    rspec-rails (2.11.4)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -153,7 +158,7 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     thor (0.16.0)
     tilt (1.3.3)
-    treetop (1.4.10)
+    treetop (1.4.11)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
@@ -169,17 +174,17 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 2.5.0)
   bcrypt-ruby (~> 3.0.1)
-  best_in_place
+  best_in_place!
   bootstrap-sass (~> 2.1.0.0)
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.2)
-  database_cleaner (= 0.8.0)
-  factory_girl_rails (= 4.0.0)
+  database_cleaner (= 0.9.1)
+  factory_girl_rails (= 4.1.0)
   jquery-rails
   money-rails!
   pg (= 0.14.1)
   rails (= 3.2.8)
-  rspec-rails (= 2.11.0)
+  rspec-rails (= 2.11.4)
   sass-rails (~> 3.2.5)
   simple_form
   uglifier (>= 1.2.7)

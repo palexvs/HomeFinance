@@ -22,17 +22,17 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '2.11.0'
+  gem 'rspec-rails', '2.11.4'
 end
 
 group :test do
   gem 'capybara', '1.1.2'
 #  gem 'capybara-webkit'
-  gem 'factory_girl_rails', '4.0.0'
-  gem 'database_cleaner', '0.8.0'
+  gem 'factory_girl_rails', '4.1.0'
+  gem 'database_cleaner', '0.9.1'
 end
 
-gem 'best_in_place'#, :git => "https://github.com/gposton/best_in_place.git"
+gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place' #, :git => "https://github.com/gposton/best_in_place.git"
 gem 'money-rails', :git => "https://github.com/palexvs/money-rails"
                     #:path => "/home/alexvs/rails_work/money-rails" 
                     #:git => "https://github.com/RubyMoney/money-rails.git"

@@ -34,7 +34,8 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.json { redirect_to(root_path, :notice => 'Transaction was successfully created.') }
+#        format.json { render json: @transaction, status: :created }
+        format.json { head :no_content }
       else
         format.json { render json: @transaction.errors.full_messages, status: :unprocessable_entity }
       end
@@ -50,10 +51,11 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
+#        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
         format.json { head :no_content }
+#        format.json { respond_with_bip(@user) }
       else
-        format.html { render :action => "edit" }
+#        format.html { render :action => "edit" }
         format.json { render :json => @transaction.errors.full_messages, status: :unprocessable_entity }
       end
     end
@@ -62,10 +64,10 @@ class TransactionsController < ApplicationController
   def destroy
     respond_to do |format|
       if @transaction.destroy
-        format.html { redirect_to(root_path, :notice => 'Transaction was successfully delete.') }
+#        format.html { redirect_to(root_path, :notice => 'Transaction was successfully delete.') }
         format.json { render json: params }
       else
-        format.html :show
+#        format.html :show
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end

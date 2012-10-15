@@ -4,7 +4,7 @@
 .accounts-list, .transactions-list {
   select {
     width: 100%;
-    height:auto;
+    height: auto;
     margin:0;
     padding:0;
   }
@@ -77,6 +77,28 @@
 // COMMON STYLES
 .hidden {
   display: none;
+}
+
+#alert-area {
+  position: fixed;
+  top: 45px;
+  right: 5px;  
+}
+
+// make faster 
+.fade {
+  -webkit-transition: opacity 0.05s linear;
+  -moz-transition: opacity 0.05s linear;
+  -o-transition: opacity 0.05s linear;
+  transition: opacity 0.05s linear;
+}
+
+// make faster modal window
+.modal.fade {
+  -webkit-transition: opacity 0.05s linear, top 0.05s ease-out;
+  -moz-transition: opacity 0.05s linear, top 0.05s ease-out;
+  -o-transition: opacity 0.05s linear, top 0.05s ease-out;
+  transition: opacity 0.05s linear, top 0.05s ease-out;
 }
 
 div {

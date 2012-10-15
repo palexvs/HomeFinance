@@ -6,34 +6,37 @@ jQuery ->
 
   $('#main')
     .on('ajax:error', 'a.transaction-new', (xhr, err) -> HandleCommonErr(err))
-    .on('ajax:success', 'a.transaction-new', (xhr, data) -> ShowTransEditForm(data))
+    .on('ajax:success', 'a.transaction-new', (xhr, data) -> ShowTransEditForm(data, "create"))
     .on('ajax:error', 'a.transaction-edit', (xhr, err) -> HandleCommonErr(err))
-    .on('ajax:success', 'a.transaction-edit', (xhr, data) -> ShowTransEditForm(data))    
-    .on("ajax:error", '.best_in_place', (xhr, err) -> HandleCommonErr(err))
-    .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction(data))        
-    .on("ajax:success", '.best_in_place', -> UpdateTransViaBestInPlace() )
+    .on('ajax:success', 'a.transaction-edit', (xhr, data) -> ShowTransEditForm(data, "update"))
+    .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction(data))   
+    .on("ajax:success", '.best_in_place', -> UpdateTransViaBIP())
+    .on('best_in_place:error', (xhr, err) -> HandleCommonErr(err))
 
 
-UpdateTransViaBestInPlace = () ->
+UpdateTransViaBIP = () ->
   LoadBalanceWidget()
+  newAlert('Transaction updated successfully')
 
 RemoveTransaction= (data) ->
-  $('tr#transaction_' + data['id']).fadeOut(500, () -> $(this).remove() )
-
+  $('tr#transaction_' + data['id']).fadeOut('fast', () -> $(this).remove() )
+  LoadBalanceWidget()
+  newAlert('Transaction removed successfully')
 
 # Show Outlay Edit Form
-ShowTransEditForm= (html) ->
+ShowTransEditForm= (html, action) ->
   OpenModalWindow(html)
   $('#myModal form input.datepicker[type="text"]').datepicker()
   $('#myModal form.trans-edit')
     .on('ajax:error', (xhr, err) -> HandleCommonErr(err))
-    .on('ajax:success', (xhr, data) -> UpdateTrans())    
+    .on('ajax:success', (xhr, data) -> UpdateTransList(action))
 
 # Update Transaction List
-UpdateTrans= () ->
+UpdateTransList= (action) ->
   CloseModalWindow()
   LoadProjectList()
   LoadBalanceWidget()
+  newAlert('Transaction '+action+'d successfully')
 
 LoadProjectList= () ->
   $.ajax
