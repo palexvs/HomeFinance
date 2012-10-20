@@ -198,6 +198,7 @@ DEPENDENCIES
   database_cleaner (= 0.9.1)
   factory_girl_rails (= 4.1.0)
   jquery-rails
+  less-rails (~> 2.2.3)
   money-rails!
   pg (= 0.14.1)
   rails (= 3.2.8)

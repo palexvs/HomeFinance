@@ -11,6 +11,7 @@ gem 'pg', '0.14.1'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'
+  gem 'less-rails', '~> 2.2.3'
   gem 'coffee-rails', '~> 3.2.2'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -18,9 +19,9 @@ group :assets do
 
   gem 'uglifier', '>= 1.2.7'
   
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   # gem 'bootstrap-sass', '~>2.1.0.1'
 end
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.4'
