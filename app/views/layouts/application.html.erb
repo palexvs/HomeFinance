@@ -6,21 +6,22 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body  data-spy="scroll" data-target=".bs-docs-sidebar">
   <%= render 'layouts/header', current_user: current_user %>
-  <div class="container">
+  <div class="container-fluid">
 
-    <div class="row">
-      <div id="main">
-        <%= yield %>
+    <div class="row-fluid">
+      <div class="span2 bs-docs-sidebar" id="menu">
+        <%=  render 'layouts/func_menu' if signed_in? %>
       </div>
+      <%= yield %>
     </div>
 
-    <%= debug(params) if Rails.env.development? %>
-
-    <div class="row" id="modal"></div>
-    <div class="row" id="alert-area"></div>
   </div>
 
+    <%= debug(params) if Rails.env.development? %>
+    <div class="row" id="modal"></div>
+    <div class="row" id="alert-area"></div>
+    
 </body>
 </html>

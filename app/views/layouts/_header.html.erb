@@ -1,7 +1,6 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-        <%=  render 'layouts/func_menu' if signed_in? %>
         <%= link_to "Finance app", '#', class: "brand" %>
         <ul class="nav pull-right">
           <% if signed_in? %>

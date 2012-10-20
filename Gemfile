@@ -18,7 +18,8 @@ group :assets do
 
   gem 'uglifier', '>= 1.2.7'
   
-  gem 'bootstrap-sass', '~>2.1.0.0'
+  # gem 'bootstrap-sass', '~>2.1.0.1'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 group :development, :test do
