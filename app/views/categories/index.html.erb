@@ -1,0 +1,20 @@
+<div class="span8">
+
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#outlay" data-toggle="tab">Outlay</a></li>
+    <li><a href="#income" data-toggle="tab">Income</a></li>
+
+  </ul>
+   
+  <div class="tab-content">
+    <div class="tab-pane active" id="outlay">
+      <%= sortable_tree(@categories_outlay, :type => :sortable, :title => :name, :new_url => new_category_path(:type => 'outlay') , :namespace => :outlay) %>      
+    </div>
+    
+    <div class="tab-pane" id="income">
+      <%= sortable_tree(@categories_income, :type => :sortable, :title => :name, :new_url => new_category_path(:type => 'income') , :namespace => :outlay) %>
+    </div>
+  </div>
+
+
+</div>

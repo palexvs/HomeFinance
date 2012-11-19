@@ -16,6 +16,9 @@
 //= require twitter/bootstrap
 //= require jquery.purr
 //= require best_in_place
+//= require jquery.ui.nestedSortable
+//= require sortable/base
+//= require comments/base
 //= require_tree .
 
 

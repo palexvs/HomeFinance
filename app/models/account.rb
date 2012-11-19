@@ -22,8 +22,8 @@ class Account < ActiveRecord::Base
   validates :description, :length => { :maximum => 255 }
   validates :currency, :presence => true, :length => {:is => 3}, :inclusion => { :in => Finance::Application.config.currency_list }
 
-  has_many :transaction, :class_name => 'Transaction', :foreign_key => 'account_id'
-  has_many :trans_transaction, :class_name => 'Transaction', :foreign_key => 'trans_account_id'
+  has_many :transactions, :class_name => 'Transaction', :foreign_key => 'account_id'
+  has_many :trans_transactions, :class_name => 'Transaction', :foreign_key => 'trans_account_id'
 
   belongs_to :user
   validates :user_id, :presence => true

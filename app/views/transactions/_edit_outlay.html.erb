@@ -13,12 +13,13 @@
     
     <%= f.input :transaction_type_id, as: :hidden %>
     <%= f.association :account, collection: accounts %>
+    <%= f.association :category, collection: categories.map { |i| ["#{'-' * i.depth} #{i.name}", i.id] }  %>
+
   </div>
   <div class="modal-footer">
     <%= link_to "Cancel", '#', :class=>"btn", :"data-dismiss" => "modal" %>
     <%= f.submit :class=>"btn btn-primary" %>
   </div>
 
-  <%= debug(transaction) if Rails.env.development? %>
 <% end %>
 </div>

@@ -13,10 +13,13 @@
 #  user_id             :integer          not null
 #  trans_account_id    :integer
 #  trans_amount_cents  :integer          default(0), not null
+#  category_id         :integer
 #
 
 class Transaction < ActiveRecord::Base
-  attr_accessible :text, :date, :transaction_type_id, :amount, :account_id, :trans_amount, :trans_account_id
+  attr_accessible :text, :date, :transaction_type_id, :amount, :account_id, :trans_amount, :trans_account_id, :category_id
+
+  TYPES = %w[outlay income transfer]
 
   validates :text, :length => { :maximum => 255 }
   validates :date, :presence => true
@@ -43,6 +46,10 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :user
   validates :user_id, :presence => true
+
+  belongs_to :category
+  validates :category_id, :presence => true 
+  delegate :name, :to => :category, :prefix => true, :allow_nil => true
 
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account, :trans_account)

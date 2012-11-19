@@ -4,7 +4,7 @@
 .bs-docs-sidenav {
   /*width: 228px;*/
   width: 128px;
-  margin: 30px 0 0;
+  margin: 0;
   padding: 0;
   background-color: #fff;
   -webkit-border-radius: 6px;
@@ -104,7 +104,7 @@
   /* When affixed, space properly */
   .bs-docs-sidenav {
     top: 0;
-    margin-top: 30px;
+    margin-top: 0;
     margin-right: 0;
   }
 }

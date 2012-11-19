@@ -4,6 +4,10 @@ Finance::Application.routes.draw do
   resources :accounts, except: [:show] 
   resources :transactions
 
+  resources :categories  do
+    post :rebuild, :on => :collection
+  end
+
   resources :users
   resources :sessions, only: [:home, :new, :create, :destroy]
 

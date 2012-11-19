@@ -7,7 +7,7 @@
     url: '/accounts'
     dataType: 'json'
     error: (jqXHR, textStatus, errorThrown) ->
-      HandleCommonErr(textStatus)
+      HandleCommonErr(jqXHR)
     success: (data, textStatus, jqXHR) ->
         $('#balance_widget table').html BalanceWidgetTemplate(data)
 

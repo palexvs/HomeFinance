@@ -1,0 +1,26 @@
+<%= simple_form_for category, :html => { :class => "form-horizontal"} do |f| %>
+  <legend><%= controller.action_name.capitalize %> Category</legend>
+
+  <!-- Display Errors -->
+  <% if category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <ul>
+      <% category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.input :name %>
+  <%= f.input :type_id, :as => :hidden %>
+
+  <div class="form-actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+    <%= link_to "Cancel", categories_path, :class=>"btn" %>
+  </div>
+<% end %>
+
+<%= debug(params) if Rails.env.development? %>

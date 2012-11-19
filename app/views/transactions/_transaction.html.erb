@@ -34,10 +34,11 @@
       <%= best_in_place transaction, :account_id, :type => :select, :collection => accounts_list %>
     </td>
   <% end %>
+  <td class="category"><%= transaction.category_name %></td>
 
   <td class="control">
     <ul class="nav nav-pills">
-      <li><%= link_to [:edit, transaction], remote: true, class: "transaction-edit" do %><i class="icon-pencil"></i><% end %></li>
+      <li><%= link_to [:edit, transaction], remote: true, class: "transaction-edit" do %><%= glyph(:pencil) %><% end %></li>
       <li><%= link_to transaction, confirm: 'Are you sure?', method: :delete, :remote => true, class: "transaction-delete", "data-type" => :json do %><i class="icon-trash"></i><% end %></li>
     </ul>
   </td>

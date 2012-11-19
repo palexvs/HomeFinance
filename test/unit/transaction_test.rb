@@ -13,6 +13,7 @@
 #  user_id             :integer          not null
 #  trans_account_id    :integer
 #  trans_amount_cents  :integer          default(0), not null
+#  category_id         :integer
 #
 
 require 'test_helper'
