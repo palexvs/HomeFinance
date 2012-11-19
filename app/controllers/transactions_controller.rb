@@ -33,7 +33,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = current_user.transaction.build(params[:transaction])
+    @transaction = current_user.transactions.build(params[:transaction])
 
     flash[:notice] = 'Transaction was successfully created.'  if @transaction.save
 
