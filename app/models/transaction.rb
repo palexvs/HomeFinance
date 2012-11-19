@@ -48,7 +48,7 @@ class Transaction < ActiveRecord::Base
   validates :user_id, :presence => true
 
   belongs_to :category
-  validates :category_id, :presence => true 
+  validates :category_id, :presence => true, :if => "!is_transfer?"
   delegate :name, :to => :category, :prefix => true, :allow_nil => true
 
   scope :with_type, includes(:transaction_type)
