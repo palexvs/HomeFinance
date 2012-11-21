@@ -14,8 +14,6 @@ group :assets do
   gem 'coffee-rails'#, '~> 3.2.2'
 
   gem 'uglifier', '>= 1.2.7'
-  
-  # gem 'bootstrap-sass', '~>2.1.0.1'
 end
 
 group :development, :test do
@@ -30,25 +28,29 @@ group :test do
   gem 'database_cleaner', '0.9.1'
 end
 
+gem 'devise'
+# gem 'cancan'
+
 gem 'twitter-bootstrap-rails'#, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', :platforms => :ruby
 gem 'less-rails'#, '~> 2.2.3'
 
 gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'
 gem 'haml'
 gem 'the_sortable_tree'#, :git => "https://github.com/the-teacher/the_sortable_tree"
+
 gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place' #, :git => "https://github.com/gposton/best_in_place.git"
 gem 'money-rails', :git => "https://github.com/palexvs/money-rails"
                     #:path => "/home/alexvs/rails_work/money-rails" 
                     #:git => "https://github.com/RubyMoney/money-rails.git"
 gem 'simple_form'
+
 gem 'jquery-rails'
 
 gem 'annotate', '~> 2.5.0', group: :development
 
 # To use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.1'
+ # gem 'bcrypt-ruby', '~> 3.0.1'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

@@ -14,7 +14,9 @@
       <div class="span2 bs-docs-sidebar" id="menu">
         <%=  render 'layouts/func_menu' if signed_in? %>
       </div>
-      <%= yield %>
+      <div class="span8" id="main">
+        <%= yield %>
+      </div>
     </div>
 
   </div>

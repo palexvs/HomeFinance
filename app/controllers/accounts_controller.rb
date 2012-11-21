@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :loged_in
+  before_filter :authenticate_user!
   before_filter :get_account_by_id, only: [:edit, :show, :update, :destroy]
 
   respond_to :html, :json

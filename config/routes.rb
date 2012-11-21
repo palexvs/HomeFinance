@@ -1,5 +1,7 @@
 Finance::Application.routes.draw do
-  root :to => 'sessions#home'
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
+
+  root :to => 'transactions#index'
 
   resources :accounts, except: [:show] 
   resources :transactions
@@ -7,14 +9,6 @@ Finance::Application.routes.draw do
   resources :categories  do
     post :rebuild, :on => :collection
   end
-
-  resources :users
-  resources :sessions, only: [:home, :new, :create, :destroy]
-
-  match '/register',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
-  before_filter :loged_in
+  before_filter :authenticate_user!
+  
   before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
   before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy]
 
@@ -24,7 +25,6 @@ class TransactionsController < ApplicationController
     default[:transaction_type_id] = TransactionType.find_by_name(params[:type]).id
 
     @transaction = Transaction.new(default)
-
     @categories = get_category_list(@transaction[:transaction_type_id] - 1)
 
     respond_with do |format|

@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   include TheSortableTreeController::Rebuild
-  
-  before_filter :loged_in
+
+  before_filter :authenticate_user!
   before_filter :get_category_by_id, only: [:edit, :show, :update, :destroy]
 
   respond_to :json, :html
