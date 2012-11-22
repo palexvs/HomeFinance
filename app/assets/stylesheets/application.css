@@ -11,8 +11,12 @@
  *= require_self
  *= require jquery-ui-1.9.0.custom
  *= require docs-2.1
+
+ *= require dataTables/jquery.dataTables.bootstrap
+
  *= require tree
  *= require sortable
  *= require comments_tree
+ 
  *= require_tree .
 */

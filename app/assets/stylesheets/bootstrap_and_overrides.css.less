@@ -34,17 +34,33 @@ body {
 
 // Accounts Table
 .accounts-list, .transactions-list {
-  select {
-    width: 100%;
-    height: auto;
-    margin:0;
-    padding:0;
+  thead th[tabindex="0"] {
+    cursor: pointer;
+  }  
+
+  .DataTables_sort_wrapper {
+    position: relative;
+    padding-left: 20px;
+
+    .DataTables_sort_icon {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -8px;
+    }
   }
-  span {
-    width:100%;
-    display:block;
-  }
+
   td {
+    select {
+      width: 100%;
+      height: auto;
+      margin:0;
+      padding:0;
+    }
+    span {
+      width:100%;
+      display:block;
+    }    
     vertical-align: middle;
     &.date {
       width:85px;

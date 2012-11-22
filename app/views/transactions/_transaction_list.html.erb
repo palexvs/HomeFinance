@@ -1,4 +1,4 @@
-<table class="transactions-list table table-striped table-condensed">
+<table id="transactions-list" class="display table table-striped transactions-list">
   <thead>
     <tr>
       <th>Date</th>
@@ -11,11 +11,11 @@
     </tr>
   </thead>
   <tbody>
-  <% if @transactions.empty? %>
+<!--   <% if @transactions.empty? %>
     <tr><td colspan="6">
       <i>There is no transaction ...</i>
     </td></tr>
-  <% end %>    
+  <% end %>   -->  
 
   <%= render partial: 'transaction', :collection => @transactions, :locals => { accounts_list: accounts.collect{ |u| [u.id,u.name]} } %>
 

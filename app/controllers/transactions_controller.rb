@@ -8,12 +8,8 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = current_user.transactions.with_type.with_account.all
-    respond_to do |format|
-      if params[:partial]
-        format.html { render partial: 'transaction_list', :locals => { accounts: @accounts } }
-      else
-        format.html # index.html.erb
-      end
+    respond_with do |format|      
+      format.html { render partial: 'transaction_list', :locals => { accounts: @accounts } } if params[:partial]
     end
   end
 
@@ -35,9 +31,13 @@ class TransactionsController < ApplicationController
   def create
     @transaction = current_user.transactions.build(params[:transaction])
 
-    flash[:notice] = 'Transaction was successfully created.'  if @transaction.save
-
-    respond_with(@transaction, :location => transactions_path)
+    respond_to do |format|
+      if @transaction.save
+        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts ) }
+      else
+        format.json { render json: @transaction.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def edit
@@ -48,10 +48,14 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def update
-    flash[:notice] = 'Transaction was successfully updated.' if @transaction.update_attributes(params[:transaction])
-    
-    respond_with(@transaction, :location => transactions_path)
+  def update   
+    respond_to do |format|
+      if @transaction.update_attributes(params[:transaction])
+        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts), status: :ok}
+      else
+        format.json { render json: @transaction.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def destroy

@@ -2,24 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $(".best_in_place").best_in_place()
 
   $('#main')
     .on('ajax:error', 'a.transaction-new', (xhr, err) -> HandleCommonErr(err))
     .on('ajax:success', 'a.transaction-new', (xhr, data) -> ShowTransEditForm(data, "create"))
     .on('ajax:error', 'a.transaction-edit', (xhr, err) -> HandleCommonErr(err))
     .on('ajax:success', 'a.transaction-edit', (xhr, data) -> ShowTransEditForm(data, "update"))
-    .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction(data))   
-    .on("ajax:success", '.best_in_place', -> UpdateTransViaBIP())
-    .on('best_in_place:error', (xhr, err) -> HandleCommonErr(err))
+    .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction( $(this)  ))   
 
 
-UpdateTransViaBIP = () ->
-  LoadBalanceWidget()
-  newAlert('Transaction updated successfully')
-
-RemoveTransaction= (data) ->
-  $('tr#transaction_' + data['id']).fadeOut('fast', () -> $(this).remove() )
+RemoveTransaction= (el) ->
+  oTable = $("#transactions-list").dataTable()
+  oTable.fnDeleteRow( el.closest("tr") )
   LoadBalanceWidget()
   newAlert('Transaction removed successfully')
 
@@ -29,12 +23,16 @@ ShowTransEditForm= (html, action) ->
   $('#myModal form input.datepicker[type="text"]').datepicker()
   $('#myModal form.trans-edit')
     .on('ajax:error', (xhr, err) -> HandleCommonErr(err))
-    .on('ajax:success', (xhr, data) -> UpdateTransList(action))
+    .on('ajax:success', (xhr, data) -> UpdateTransList(action, data))
 
 # Update Transaction List
-UpdateTransList= (action) ->
+UpdateTransList= (action, data) ->
   CloseModalWindow()
-  LoadProjectList()
+  if action == "create"
+    oTable = $("#transactions-list").dataTable()
+    oTable.fnAddData(data)
+  else
+    LoadProjectList()
   LoadBalanceWidget()
   newAlert('Transaction '+action+'d successfully')
 
