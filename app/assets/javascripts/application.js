@@ -20,8 +20,3 @@
 //= require sortable/base
 //= require comments/base
 //= require_tree .
-
-
-//jQuery(function($){
-//  $.extend($.fn.datepicker.defaults, { format: 'yyyy-mm-dd' });
-//});

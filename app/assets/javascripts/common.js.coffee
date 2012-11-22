@@ -19,7 +19,17 @@ jQuery ->
   $('#myModal').modal('hide')
 
 @HandleCommonErr= (errors) ->
-  newAlert(msg, 'error') for msg in $.parseJSON(errors.responseText)
+  try 
+    msgs = $.parseJSON(errors.responseText)
+  catch err
+    msgs = errors.responseText
+    newAlert(msgs, 'error')
+    return
+    
+  if $.isArray(msgs)
+    newAlert(msg, 'error') for msg in msgs
+  else
+    $.each( msgs.errors, (key, value) -> newAlert("#{key} #{value}", 'error') )
 
 @newAlert= (message, type = 'success') ->
   $("#alert-area").html($("<div class='alert-message alert alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"))
