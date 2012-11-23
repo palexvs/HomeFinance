@@ -8,8 +8,13 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = current_user.transactions.with_type.with_account.all
+    @categories = {
+      "outlay" => get_category_list(Transaction::TYPES.index("outlay")),
+      "income" => get_category_list(Transaction::TYPES.index("income"))
+    }
+
     respond_with do |format|      
-      format.html { render partial: 'transaction_list', :locals => { accounts: @accounts } } if params[:partial]
+      format.html { render partial: 'transaction_list', :locals => { accounts: @accounts, categories: @categories } } if params[:partial]
     end
   end
 
@@ -30,10 +35,11 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = current_user.transactions.build(params[:transaction])
+    @categories = get_category_list(@transaction[:transaction_type_id] - 1)
 
     respond_to do |format|
       if @transaction.save
-        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts ) }
+        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts, @categories ) }
       else
         format.json { render json: @transaction.errors, status: :unprocessable_entity}
       end
@@ -49,9 +55,11 @@ class TransactionsController < ApplicationController
   end
 
   def update   
+    @categories = get_category_list(@transaction[:transaction_type_id] - 1)
+    
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts), status: :ok}
+        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts, @categories), status: :ok}
       else
         format.json { render json: @transaction.errors, status: :unprocessable_entity}
       end

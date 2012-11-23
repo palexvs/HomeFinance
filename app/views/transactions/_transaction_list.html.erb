@@ -11,13 +11,9 @@
     </tr>
   </thead>
   <tbody>
-<!--   <% if @transactions.empty? %>
-    <tr><td colspan="6">
-      <i>There is no transaction ...</i>
-    </td></tr>
-  <% end %>   -->  
 
-  <%= render partial: 'transaction', :collection => @transactions, :locals => { accounts_list: accounts.collect{ |u| [u.id,u.name]} } %>
+  <%= render partial: 'transaction', :collection => @transactions, 
+    :locals => { accounts_list: accounts.collect{ |u| [u.id,u.name]}, categories: categories } %>
 
   </tbody>
 </table>

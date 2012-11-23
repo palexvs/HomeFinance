@@ -1,10 +1,11 @@
 class TransactionsDatatable
   delegate :dom_id, :best_in_place, :link_to, :glyph, :h, to: :@view
 
-  def initialize(view, transaction, accounts)
+  def initialize(view, transaction, accounts, categories)
     @view = view
     @transaction = transaction
     @accounts = accounts
+    @categories = categories
   end
 
   def as_json(options = {})

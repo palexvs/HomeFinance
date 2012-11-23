@@ -15,26 +15,26 @@
     </td>
     <td>
       <div><div>
-        <%= transaction.amount %>
+        <%= best_in_place transaction, :amount, :type => :input %>
         <div class="divider"></div>
-        <%= transaction.trans_amount %>
+        <%= best_in_place transaction, :trans_amount, :type => :input %>
       </div></div>
     </td>
     <td>
       <div><div>
-        <%= transaction.account_name %>
+        <%= best_in_place transaction, :account_id, :type => :select, :collection => accounts_list %>
         <div class="divider"></div>
-        <%= transaction.trans_account_name %>
+        <%= best_in_place transaction, :trans_account_id, :type => :select, :collection => accounts_list %>
       </div></div>
     </td>
+    <td></td>
   <% else %>
     <td><%= transaction.transaction_type_name %></td>
     <td><%= best_in_place transaction, :amount, :type => :input %></td>
-    <td>
-      <%= best_in_place transaction, :account_id, :type => :select, :collection => accounts_list %>
-    </td>
+    <td><%= best_in_place transaction, :account_id, :type => :select, :collection => accounts_list %></td>
+    <td><%= best_in_place transaction, :category_id, :type => :select, :collection => categories[transaction.transaction_type_name].map { |i| [i.id, "#{'-' * i.depth} #{i.name}"] }  %> </td>
   <% end %>
-  <td><%= transaction.category_name %></td>
+  
 
   <td>
     <ul class="nav nav-pills">
