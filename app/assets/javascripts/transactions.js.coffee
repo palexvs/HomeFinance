@@ -13,7 +13,7 @@ jQuery ->
 
 RemoveTransaction= (el) ->
   oTable = $("#transactions-list").dataTable()
-  oTable.fnDeleteRow( el.closest("tr") )
+  oTable.fnDeleteRow( el.closest("tr")[0] )
   LoadBalanceWidget()
   newAlert('Transaction removed successfully')
 
@@ -23,26 +23,27 @@ ShowTransEditForm= (html, action) ->
   $('#myModal form input.datepicker[type="text"]').datepicker()
   $('#myModal form.trans-edit')
     .on('ajax:error', (xhr, err) -> HandleCommonErr(err))
-    .on('ajax:success', (xhr, data) -> UpdateTransList(action, data))
+    .on('ajax:success', (xhr, data) -> UpdateTransRow(action, data))
 
 # Update Transaction List
-UpdateTransList= (action, data) ->
+UpdateTransRow= (action, data) ->
   CloseModalWindow()
+
   if action == "create"
-    oTable = $("#transactions-list").dataTable()
-    oTable.fnAddData(data)
-  else
-    LoadProjectList()
+    $("#transactions-list").dataTable().fnAddData(data)
+  else if action == "update"
+    $("#transactions-list").dataTable().fnUpdate(data, $("tr##{data.DT_RowId}")[0])
+
   LoadBalanceWidget()
   newAlert('Transaction '+action+'d successfully')
 
-LoadProjectList= () ->
-  $.ajax
-    type: 'GET'
-    url: '/transactions'
-    data: {partial: true}
-    dataType: 'html'
-    error: (jqXHR, textStatus, errorThrown) ->
-      HandleCommonErr(textStatus)
-    success: (data, textStatus, jqXHR) ->
-        $('#transactions').html "#{data}"
+# LoadProjectList= () ->
+#   $.ajax
+#     type: 'GET'
+#     url: '/transactions'
+#     data: {partial: true}
+#     dataType: 'html'
+#     error: (jqXHR, textStatus, errorThrown) ->
+#       HandleCommonErr(textStatus)
+#     success: (data, textStatus, jqXHR) ->
+#         $('#transactions').html "#{data}"

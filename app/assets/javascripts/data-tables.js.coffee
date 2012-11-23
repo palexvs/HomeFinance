@@ -32,8 +32,3 @@ jQuery ->
       { "sClass": "category", "mData": "category" }
       { "sClass": "control", "bSortable": false, "mData": "control" }
     ]
-    # aoColumns: [
-    #   null,
-    #   {"sWidth": "90px"},
-    #   {"sWidth": "70px", "bSortable": false},
-    # ] 

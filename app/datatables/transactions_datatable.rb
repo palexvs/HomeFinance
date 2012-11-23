@@ -31,33 +31,3 @@ private
   end
 
 end
-
-# <tr id="<%= dom_id(transaction) %>" class="<%= transaction.transaction_type_name %>" >
-
-#   <% if transaction.is_transfer? %>
-#     <td>
-#       <div>
-#         <div><%= transaction.transaction_type_name %></div>
-#         <div class="direction"> 
-#           from:
-#           <div class="divider"></div>
-#           to:
-#         </div>
-#       </div>
-#     </td>
-#     <td>
-#       <div><div>
-#         <%= transaction.amount %>
-#         <div class="divider"></div>
-#         <%= transaction.trans_amount %>
-#       </div></div>
-#     </td>
-#     <td>
-#       <div><div>
-#         <%= transaction.account_name %>
-#         <div class="divider"></div>
-#         <%= transaction.trans_account_name %>
-#       </div></div>
-#     </td>
-
-# </tr>
