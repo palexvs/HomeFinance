@@ -32,8 +32,8 @@ class Transaction < ActiveRecord::Base
   delegate :name, :to => :account, :prefix => true  
 
   monetize :trans_amount_cents, :allow_nil => true
-  validates :trans_amount, :presence => true, :numericality => { :greater_than_or_equal_to  => 0 }, :if => :is_transfer?
-  validates :trans_account_id, :presence => true, :if => :is_transfer?
+  validates :trans_amount, :presence => true, :numericality => { :greater_than_or_equal_to  => 0 }, :if => :type_transfer?
+  validates :trans_account_id, :presence => true, :if => :type_transfer?
   belongs_to :trans_account, :class_name => "Account", :foreign_key => :trans_account_id  
   delegate :name, :to => :trans_account, :prefix => true  
 
@@ -48,7 +48,7 @@ class Transaction < ActiveRecord::Base
   validates :user_id, :presence => true
 
   belongs_to :category
-  validates :category_id, :presence => true, :if => "!is_transfer?"
+  validates :category_id, :presence => true, :if => "!type_transfer?"
   delegate :name, :to => :category, :prefix => true, :allow_nil => true
 
   scope :with_type, includes(:transaction_type)
@@ -66,8 +66,10 @@ class Transaction < ActiveRecord::Base
     super options
   end
 
-  def is_transfer?
-    transaction_type_id == 3
+  TYPES.each do |type|
+    define_method "type_#{type}?".to_sym do
+      transaction_type_id == (TYPES.index(type.to_s) + 1)
+    end
   end
 
   private
@@ -98,12 +100,12 @@ class Transaction < ActiveRecord::Base
 
   def update_balance_create(t = self)
     Account.update_counters t.account_id, :balance_cents => t.amount_cents*get_sign(t)
-    Account.update_counters t.trans_account_id, :balance_cents => t.trans_amount_cents if t.is_transfer?
+    Account.update_counters t.trans_account_id, :balance_cents => t.trans_amount_cents if t.type_transfer?
   end
 
   def update_balance_destroy(t = self)
     Account.update_counters t.account_id, :balance_cents => t.amount_cents*(-1)*get_sign(t)
-    Account.update_counters t.trans_account_id, :balance_cents => t.trans_amount_cents*(-1) if t.is_transfer?
+    Account.update_counters t.trans_account_id, :balance_cents => t.trans_amount_cents*(-1) if t.type_transfer?
   end
 
   def update_balance_update

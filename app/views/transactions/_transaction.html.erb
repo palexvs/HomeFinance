@@ -2,7 +2,7 @@
   <td><%= best_in_place transaction, :date, :type => :date %></td>
   <td><%= best_in_place transaction, :text, :type => :input %></td>
 
-  <% if transaction.is_transfer? %>
+  <% if transaction.type_transfer? %>
     <td>
       <div>
         <div><%= transaction.transaction_type_name %></div>
