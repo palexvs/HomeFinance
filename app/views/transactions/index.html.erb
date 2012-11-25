@@ -1,4 +1,3 @@
-
 <h2>Transaction's list</h2>
 
 <div class="btn-group">
@@ -15,6 +14,7 @@
 
 
 <div id="transactions">
+  <%= select_period() %>
 	<%= render 'transaction_list', accounts: @accounts, categories: @categories %>
 </div>
 

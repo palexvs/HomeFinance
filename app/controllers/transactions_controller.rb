@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  include PeriodHelper
   before_filter :authenticate_user!
   
   before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
@@ -7,7 +8,9 @@ class TransactionsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @transactions = current_user.transactions.with_type.with_account.all
+    period = parse_period(params[:period])
+    @transactions = current_user.transactions.with_type.with_account.with_category.period(period)
+
     @categories = {
       "outlay" => get_category_list(Transaction::TYPES.index("outlay")),
       "income" => get_category_list(Transaction::TYPES.index("income"))
@@ -15,6 +18,7 @@ class TransactionsController < ApplicationController
 
     respond_with do |format|      
       format.html { render partial: 'transaction_list', :locals => { accounts: @accounts, categories: @categories } } if params[:partial]
+      format.json { render json: TransactionsDatatable.new(view_context, @transactions, @accounts, @categories ) }
     end
   end
 
@@ -39,7 +43,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts, @categories ) }
+        format.json { render json: TransactionsDatatable.new(view_context, [@transaction], @accounts, @categories ) }
       else
         format.json { render json: @transaction.errors, status: :unprocessable_entity}
       end
@@ -59,7 +63,7 @@ class TransactionsController < ApplicationController
     
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.json { render json: TransactionsDatatable.new(view_context, @transaction, @accounts, @categories), status: :ok}
+        format.json { render json: TransactionsDatatable.new(view_context, [@transaction], @accounts, @categories), status: :ok}
       else
         format.json { render json: @transaction.errors, status: :unprocessable_entity}
       end

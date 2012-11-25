@@ -51,8 +51,10 @@ class Transaction < ActiveRecord::Base
   validates :category_id, :presence => true, :if => "!type_transfer?"
   delegate :name, :to => :category, :prefix => true, :allow_nil => true
 
+  scope :with_category, includes(:category)
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account, :trans_account)
+  scope :period, lambda { |period| where(:date => period[:start]..period[:end] ) }
   default_scope order("date desc,id desc")
 
   before_create :update_balance_create

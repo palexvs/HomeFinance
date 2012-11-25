@@ -9,6 +9,7 @@ jQuery ->
     .on('ajax:error', 'a.transaction-edit', (xhr, err) -> HandleCommonErr(err))
     .on('ajax:success', 'a.transaction-edit', (xhr, data) -> ShowTransEditForm(data, "update"))
     .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction( $(this)  ))   
+    .on('change', 'select#Transaction_period', () -> ReloadTransactionsList($(this).val() ) )
 
 
 RemoveTransaction= (el) ->
@@ -37,13 +38,14 @@ UpdateTransRow= (action, data) ->
   LoadBalanceWidget()
   newAlert('Transaction '+action+'d successfully')
 
-# LoadProjectList= () ->
-#   $.ajax
-#     type: 'GET'
-#     url: '/transactions'
-#     data: {partial: true}
-#     dataType: 'html'
-#     error: (jqXHR, textStatus, errorThrown) ->
-#       HandleCommonErr(textStatus)
-#     success: (data, textStatus, jqXHR) ->
-#         $('#transactions').html "#{data}"
+ReloadTransactionsList= (period) ->
+  $.ajax
+    type: 'GET'
+    url: '/transactions'
+    data: {period: period}
+    dataType: 'json'
+    error: (jqXHR, textStatus, errorThrown) ->
+      HandleCommonErr(textStatus)
+    success: (data, textStatus, jqXHR) ->
+        $('#transactions-list').dataTable().fnClearTable()
+        $("#transactions-list").dataTable().fnAddData(data)
