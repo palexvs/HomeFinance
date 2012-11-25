@@ -11,7 +11,7 @@ module PeriodHelper
     begin
       {
         start: start.to_datetime,
-        end: (start.to_datetime + 1.month)
+        end: (start.to_datetime + 1.month - 1.day)
       }
     rescue ArgumentError, NoMethodError
       getCurrentPeriod()
