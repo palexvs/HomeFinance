@@ -53,7 +53,7 @@
     #   {name: 'London', data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]}
     # ]    
     series: [{
-        data: data,
-        pointStart: Date.UTC(2010, 0, 1),
+        data: data.data,
+        pointStart: Date.UTC(data.start_date[0],data.start_date[1],data.start_date[2]),
         pointInterval: 24 * 3600 * 1000
     }]    
