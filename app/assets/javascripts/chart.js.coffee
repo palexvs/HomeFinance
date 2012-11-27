@@ -31,15 +31,16 @@
       renderTo: 'chart-container'
       zoomType: 'x'
     title:
-      text: 'Monthly Average Temperature'
-    subtitle:
-      text: 'Source: WorldClimate.com'
+      text: 'Monthly Outlay'
+    # subtitle:
+    #   text: 'Source: WorldClimate.com'
     xAxis:
       type: 'datetime'
       maxZoom: 48 * 3600 * 1000
     yAxis:
+      min: 0
       title:
-        text: 'Temperature (°C)'
+        text: 'Amount'
     # tooltip:
     #   enabled: false
     #   formatter: () -> '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y +'°C';
@@ -54,6 +55,6 @@
     # ]    
     series: [{
         data: data.data,
-        pointStart: Date.UTC(data.start_date[0],data.start_date[1],data.start_date[2]),
+        pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2]),
         pointInterval: 24 * 3600 * 1000
     }]    
