@@ -5,6 +5,7 @@ Finance::Application.routes.draw do
 
   resources :accounts, except: [:show] 
   resources :transactions
+  resources :analytics, only: [:index]
 
   resources :categories  do
     post :rebuild, :on => :collection

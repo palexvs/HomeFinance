@@ -24,4 +24,7 @@
 //= require sortable/base
 //= require comments/base
 
+//= require highcharts
+//= require highcharts/highcharts-more
+
 //= require_tree .

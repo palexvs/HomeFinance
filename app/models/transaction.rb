@@ -74,6 +74,31 @@ class Transaction < ActiveRecord::Base
     end
   end
 
+  def self.chart_data(start = 4.weeks.ago)
+    total_amount = amount_by_day(start)
+    # shipping_amount = where(shipping: true).amount_by_day(start)
+    # download_amount = where(shipping: false).amount_by_day(start)
+    (start.to_date..Date.today).map do |date|
+      # {
+        # date: date,
+        # amount: total_amount[date] || 0,
+      total_amount[date].to_i || 0
+        # shipping_amount: shipping_amount[date] || 0,
+        # download_amount: download_amount[date] || 0
+      # }
+    end
+  end
+
+  def self.amount_by_day(start)
+    orders = unscoped.where(date: start..Date.today)
+    orders = orders.where(transaction_type_id: 1)
+    orders = orders.group(:date)
+    orders = orders.select("date, sum(amount_cents) as total_amount")
+    orders.each_with_object({}) do |order, amount|
+      amount[order.date] = order.total_amount
+    end
+  end
+
   private
 
   def transaction_type_exists?

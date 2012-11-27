@@ -29,6 +29,8 @@ group :test do
   gem 'database_cleaner', '0.9.1'
 end
 
+gem "highcharts-rails", "~> 2.3.0"
+
 gem 'devise'
 # gem 'cancan'
 
