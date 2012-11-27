@@ -82,7 +82,7 @@ class Transaction < ActiveRecord::Base
       # {
         # date: date,
         # amount: total_amount[date] || 0,
-      total_amount[date].to_i || 0
+      total_amount[date] || 0
         # shipping_amount: shipping_amount[date] || 0,
         # download_amount: download_amount[date] || 0
       # }
@@ -95,7 +95,7 @@ class Transaction < ActiveRecord::Base
     orders = orders.group(:date)
     orders = orders.select("date, sum(amount_cents) as total_amount")
     orders.each_with_object({}) do |order, amount|
-      amount[order.date] = order.total_amount
+      amount[order.date] = order.total_amount.to_i / 100 
     end
   end
 
