@@ -17,6 +17,7 @@
 #
 
 class Transaction < ActiveRecord::Base
+  extend Analytic
   attr_accessible :text, :date, :transaction_type_id, :amount, :account_id, :trans_amount, :trans_account_id, :category_id
 
   TYPES = %w[outlay income transfer]
@@ -55,7 +56,7 @@ class Transaction < ActiveRecord::Base
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account, :trans_account)
   scope :period, lambda { |period| where(:date => period[:start]..period[:end] ) }
-  default_scope order("date desc,id desc")
+  # default_scope order("date desc,id desc")
 
   before_create :update_balance_create
   before_destroy :update_balance_destroy
@@ -71,31 +72,6 @@ class Transaction < ActiveRecord::Base
   TYPES.each do |type|
     define_method "type_#{type}?".to_sym do
       transaction_type_id == (TYPES.index(type.to_s) + 1)
-    end
-  end
-
-  def self.chart_data(start = 4.weeks.ago)
-    total_amount = amount_by_day(start)
-    # shipping_amount = where(shipping: true).amount_by_day(start)
-    # download_amount = where(shipping: false).amount_by_day(start)
-    (start.to_date..Date.today).map do |date|
-      # {
-        # date: date,
-        # amount: total_amount[date] || 0,
-      total_amount[date] || 0
-        # shipping_amount: shipping_amount[date] || 0,
-        # download_amount: download_amount[date] || 0
-      # }
-    end
-  end
-
-  def self.amount_by_day(start)
-    orders = unscoped.where(date: start..Date.today)
-    orders = orders.where(transaction_type_id: 1)
-    orders = orders.group(:date)
-    orders = orders.select("date, sum(amount_cents) as total_amount")
-    orders.each_with_object({}) do |order, amount|
-      amount[order.date] = order.total_amount.to_i / 100 
     end
   end
 
