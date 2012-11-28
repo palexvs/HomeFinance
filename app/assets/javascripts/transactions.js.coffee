@@ -49,3 +49,4 @@ ReloadTransactionsList= (period) ->
     success: (data, textStatus, jqXHR) ->
         $('#transactions-list').dataTable().fnClearTable()
         $("#transactions-list").dataTable().fnAddData(data)
+        $(".best_in_place").best_in_place()
