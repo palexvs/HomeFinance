@@ -5,7 +5,10 @@ class TransactionsDatatable
     @view = view
     @transactions = transactions
     @accounts = accounts.collect{ |u| [u.id,u.name]}
-    @categories = categories
+    @categories = {}
+    categories.each do |k,v|  
+      @categories[k] = v.map { |i| [i.id, "#{'-' * i.depth} #{i.name}"] }
+    end
   end
 
   def as_json(options = {})
@@ -21,11 +24,19 @@ private
       type:  cell_type_name(transaction),
       amount:  cell_amount(transaction),
       account:  cell_account(transaction),
-      category: transaction.category_name,
-      control: cell_cotrol(transaction),
+      category: cell_category(transaction),
+      control: cell_control(transaction),
       DT_RowClass: transaction.transaction_type_name,
       DT_RowId: dom_id(transaction) 
     }    
+  end
+
+  def cell_category(transaction)
+    if !transaction.type_transfer?
+      best_in_place(transaction, :category_id, :type => :select, :collection => @categories[transaction.transaction_type_name])
+    else
+      ''
+    end
   end
 
   def cell_type_name(transaction)
@@ -60,7 +71,7 @@ private
     end
   end
 
-  def cell_cotrol(transaction)
+  def cell_control(transaction)
     '<ul class="nav nav-pills">' +
     '<li>' + link_to( glyph(:pencil), [:edit, transaction], remote: true, class: "transaction-edit")  + '</li>' +
     '<li>' + link_to( glyph(:trash), transaction, confirm: 'Are you sure?', method: :delete, :remote => true, class: "transaction-delete", "data-type" => :json) + '</li>' +

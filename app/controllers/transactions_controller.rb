@@ -12,8 +12,8 @@ class TransactionsController < ApplicationController
     @transactions = current_user.transactions.with_type.with_account.with_category.period(period)
 
     @categories = {
-      "outlay" => get_category_list(Transaction::TYPES.index("outlay")),
-      "income" => get_category_list(Transaction::TYPES.index("income"))
+      "outlay" => current_user.categories.outlay.nested_set,
+      "income" => current_user.categories.income.nested_set
     }
 
     respond_with do |format|      
@@ -39,7 +39,7 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = current_user.transactions.build(params[:transaction])
-    @categories = get_category_list(@transaction[:transaction_type_id] - 1)
+    @categories = { @transaction.transaction_type_name => get_category_list(@transaction.transaction_type_id - 1) }
 
     respond_to do |format|
       if @transaction.save
@@ -51,7 +51,7 @@ class TransactionsController < ApplicationController
   end
 
   def edit
-    @categories = get_category_list(@transaction[:transaction_type_id] - 1)
+    @categories = get_category_list(@transaction.transaction_type_id - 1)
 
     respond_with do |format|
       format.html { render partial: transaction_edit_form, locals: { categories: @categories, accounts: @accounts, transaction: @transaction }}
@@ -59,7 +59,7 @@ class TransactionsController < ApplicationController
   end
 
   def update   
-    @categories = get_category_list(@transaction[:transaction_type_id] - 1)
+    @categories = { @transaction.transaction_type_name => get_category_list(@transaction.transaction_type_id - 1) }
     
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
