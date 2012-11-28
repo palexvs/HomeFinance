@@ -116,6 +116,9 @@
     ]
     
 @Load_roundChart_month = (data) ->
+  sum = 0
+  sum += v[1] for v in data.data
+
   chart = new Highcharts.Chart
     chart:
       renderTo: 'round_month_chart-container'
@@ -124,9 +127,9 @@
       plotShadow: false      
       zoomType: 'x'
     title:
-      text: 'Outlay'
+      text: "Outlay (#{Highcharts.numberFormat(sum, 0, ',')})"
     tooltip: 
-      pointFormat: '{series.name}: <b>{point.percentage}%</b>'
+      pointFormat: '{series.name}: <b>{point.percentage}%</b> ({point.y})'
       percentageDecimals: 1
     plotOptions:
       pie:
@@ -136,9 +139,13 @@
           enabled: true
           color: '#000000'
           connectorColor: '#000000'
-          # formatter: () -> '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'
+          formatter: () -> 
+            if this.percentage > 2
+              "<b>#{this.point.name}</b>: #{Highcharts.numberFormat(this.percentage, 1, '.')}% (#{Highcharts.numberFormat(this.y,0,",")})"
+            else
+              null
     series: [{
       type: 'pie'
-      name: 'Browser share'
+      name: 'Outlay'
       data: data.data
     }]

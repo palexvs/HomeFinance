@@ -51,6 +51,8 @@ class Transaction < ActiveRecord::Base
   belongs_to :category
   validates :category_id, :presence => true, :if => "!type_transfer?"
   delegate :name, :to => :category, :prefix => true, :allow_nil => true
+  delegate :parent_id, :to => :category, :prefix => true, :allow_nil => true
+  delegate :depth, :to => :category, :prefix => true, :allow_nil => true
 
   scope :with_category, includes(:category)
   scope :with_type, includes(:transaction_type)

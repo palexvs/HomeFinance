@@ -24,4 +24,8 @@ class Category < ActiveRecord::Base
   validates :user_id, :presence => true
 
   validates :type_id, :presence => true #, :inludes => { 0..[].length}
+
+  Transaction::TYPES.each_with_index do |type, i|
+    scope "#{type}".to_sym, where(type_id: i)
+  end
 end
