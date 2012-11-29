@@ -26,6 +26,17 @@
     ]
 
 @LoadChart = (data) ->
+  data_series = []
+  pointInterval = 24 * 3600 * 1000
+  pointStart = Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
+  for k,v of data.data
+    data_series.push {
+      name: k
+      data: v
+      pointStart: pointStart
+      pointInterval: pointInterval
+    }
+
   chart = new Highcharts.Chart
     chart:
       renderTo: 'chart-container'
@@ -53,28 +64,44 @@
     #   {name: 'Tokyo', data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]},
     #   {name: 'London', data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]}
     # ]    
-    series: [
-      { 
-        name: 'Sum'
-        data: data.data.sum
-        pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
-        pointInterval: 24 * 3600 * 1000 },
-      { 
-        name: 'food'
-        data: data.data.food
-        pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
-        pointInterval: 24 * 3600 * 1000 }  
-    ]
+    series: data_series
+    # series: [
+    #   { 
+    #     name: 'Sum'
+    #     data: data.data.sum
+    #     pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
+    #     pointInterval: 24 * 3600 * 1000 },
+    #   { 
+    #     name: 'food'
+    #     data: data.data.food
+    #     pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
+    #     pointInterval: 24 * 3600 * 1000 }  
+    # ]
 
 @LoadChart_byWeek = (data) ->
-  sum_week = []
-  food_week = []
-  for v, i in data.data.sum
-    w = Math.floor(i/7)
-    sum_week[w] = (sum_week[w] || 0) + v
-    food_week[w] = (food_week[w] || 0) + data.data.food[i]
-  data.data.sum = sum_week
-  data.data.food = food_week
+  for id, arr_v of data.data
+    arr_v.data_week = []
+    arr_v.sum = 0
+    for v, i in arr_v.value
+      y = Math.floor(i/7)
+      arr_v.data_week[y] = (arr_v.data_week[y] || 0) + v
+      arr_v.sum += v
+
+  data_series = []
+  pointInterval = 7 * 24 * 3600 * 1000
+  pointStart = Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
+
+  for id, arr_v of data.data
+    if arr_v.meta.depth == 0  
+      data_series.push {
+          name: arr_v.meta.name
+          data: arr_v.data_week
+          pointStart: pointStart
+          pointInterval: pointInterval
+          sum: arr_v.sum
+        }
+  data_series.sort (a, b) -> b.sum - a.sum
+
   chart = new Highcharts.Chart
     chart:
       renderTo: 'chart-container'
@@ -101,19 +128,20 @@
     # series: [
     #   {name: 'Tokyo', data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]},
     #   {name: 'London', data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]}
-    # ]    
-    series: [
-      { 
-        name: 'Sum'
-        data: data.data.sum
-        pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
-        pointInterval: 7 * 24 * 3600 * 1000 },
-      { 
-        name: 'food'
-        data: data.data.food
-        pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
-        pointInterval: 7 * 24 * 3600 * 1000 }  
-    ]
+    # ] 
+    series: data_series   
+    # series: [
+    #   { 
+    #     name: 'Sum'
+    #     data: data.data.sum
+    #     pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
+    #     pointInterval: 7 * 24 * 3600 * 1000 },
+    #   { 
+    #     name: 'food'
+    #     data: data.data.food
+    #     pointStart: Date.UTC(data.start_date[0],data.start_date[1]-1,data.start_date[2])
+    #     pointInterval: 7 * 24 * 3600 * 1000 }  
+    # ]
     
 @Load_roundChart_month = (data) ->
   sum = 0
