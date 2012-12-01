@@ -1,2 +1,21 @@
-<div id="round_month_chart-container"></div>
-<script>$(function () { data = <%=raw @data.to_json %>; Load_roundChart_month(data) });</script>
+<% if @period[:alert] %>
+  <div class='alert-message alert alert-error fade in' data-alert>
+    <a class="close" data-dismiss="alert" href="#">&times;</a>
+    <p> <%= @period[:alert] %> </p>
+  </div>
+<% end %>
+
+<%=  form_tag(month_analytics_path, method: :get, :class => "form-inline select-period") do  %>
+    
+    <%= text_field_tag 'period[start]', @period[:start], class: "datepicker input-small" %>
+    <%= text_field_tag 'period[finish]', @period[:finish], class: "datepicker input-small" %>
+
+    <%= submit_tag "Go", :class=>"btn btn-primary" %>
+<% end %>
+
+<%= content_tag :div, "", id: "statistic_chart", data: {statistic: @data} %>
+<div id="balance-round_month_chart-container"></div>
+<div id="outlay-round_month_chart-container"></div>
+<div id="income-round_month_chart-container"></div>
+
+<script> $(function () {show_report_pie(); }); </script>

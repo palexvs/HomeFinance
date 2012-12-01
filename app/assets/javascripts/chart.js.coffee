@@ -143,19 +143,16 @@
     #     pointInterval: 7 * 24 * 3600 * 1000 }  
     # ]
     
-@Load_roundChart_month = (data) ->
-  sum = 0
-  sum += v[1] for v in data.data
-
+@draw_chart_pie = (data, type) ->
   chart = new Highcharts.Chart
     chart:
-      renderTo: 'round_month_chart-container'
+      renderTo: "#{type}-round_month_chart-container"
       plotBackgroundColor: null
       plotBorderWidth: null
       plotShadow: false      
       zoomType: 'x'
     title:
-      text: "Outlay (#{Highcharts.numberFormat(sum, 0, ',')})"
+      text: "#{type} (#{Highcharts.numberFormat(data.sum, 0, ',')})"
     tooltip: 
       pointFormat: '{series.name}: <b>{point.percentage}%</b> ({point.y})'
       percentageDecimals: 1
@@ -174,6 +171,21 @@
               null
     series: [{
       type: 'pie'
-      name: 'Outlay'
+      name: "#{type}"
       data: data.data
     }]
+
+@show_report_pie = ->
+  data = $("#statistic_chart").data("statistic")
+  
+  data.outlay.sum = 0
+  data.outlay.sum += v[1] for v in data.outlay.data
+
+  data.income.sum = 0
+  data.income.sum += v[1] for v in data.income.data
+
+  balance = data.income.sum-data.outlay.sum
+
+  draw_chart_pie({"data": [["Outlay", data.outlay.sum],["Left", balance]], "sum": balance}, 'balance')
+  draw_chart_pie(data.outlay, 'outlay')
+  draw_chart_pie(data.income, 'income')

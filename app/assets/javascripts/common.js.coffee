@@ -6,6 +6,7 @@ jQuery ->
   $.datepicker.setDefaults
     dateFormat: "yy-mm-dd",
     firstDay: 1
+  $('input.datepicker[type="text"]').datepicker()
 
 @OpenModalWindow= (html) ->
   $('#myModal').modal('hide')

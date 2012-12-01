@@ -71,6 +71,10 @@ class Transaction < ActiveRecord::Base
     super options
   end
 
+  TYPES.each_with_index do |type, i|
+    scope "#{type}".to_sym, where(transaction_type_id: (i+1))
+  end  
+
   TYPES.each do |type|
     define_method "type_#{type}?".to_sym do
       transaction_type_id == (TYPES.index(type.to_s) + 1)

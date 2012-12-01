@@ -10,9 +10,8 @@ module Analytic
     end
   end  
 
-  def amount_by_category(start = 4.weeks.ago)
-    orders = where(date: start..Date.today)
-    orders = orders.where(transaction_type_id: 1)
+  def amount_by_category(start = 4.weeks.ago, finish = Date.today)
+    orders = where(date: start..finish)
     # orders = orders.where("category_id IS NOT NULL")
     orders = orders.group(:category_id)
     orders = orders.select("category_id, sum(amount_cents) as total_amount")
