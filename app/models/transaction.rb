@@ -118,7 +118,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def update_balance_update
-    transaction_old = Transaction.find(id)
+    transaction_old = Transaction.find_by_id(id)
 
     update_balance_destroy(transaction_old)
     update_balance_create(self)

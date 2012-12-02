@@ -2,8 +2,8 @@
 <table>
 	<% accounts.each do |account| %>
 		<tr>
-		  <td class="key"><%= account.name %>:</td>
-		  <td class="value"><%= account.balance %> <%= account.balance.currency.symbol %></td>
+		  <td class="key"><%= account.name %> <%= account.balance.currency.symbol %>:</td>
+		  <td class="value"><%= account.balance %></td>
 		</tr>
 	<% end %>
 </table>

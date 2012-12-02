@@ -12,7 +12,7 @@
     <%= f.input :amount %>
     
     <%= f.input :transaction_type_id, as: :hidden %>
-    <%= f.association :account, collection: accounts %>
+    <%= f.association :account, collection: accounts.map{ |u| ["#{u.balance.currency.symbol} #{u.name}", u.id]} %>
     <%= f.association :category, collection: categories.map { |i| ["#{'-' * i.depth} #{i.name}", i.id] }  %>
   </div>
   <div class="modal-footer">

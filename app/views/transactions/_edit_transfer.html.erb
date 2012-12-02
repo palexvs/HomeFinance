@@ -12,11 +12,11 @@
 
     <p>From</p>
     <%= f.input :amount %>
-    <%= f.association :account, collection: accounts %>
+    <%= f.association :account, collection: accounts.map{ |u| ["#{u.balance.currency.symbol} #{u.name}", u.id]} %>
 
     <p>To</p>
     <%= f.input :trans_amount, label: "Amount"  %>
-    <%= f.association :trans_account, collection: accounts, label: "Account" %>
+    <%= f.association :trans_account, collection: accounts.map{ |u| ["#{u.balance.currency.symbol} #{u.name}", u.id]}, label: "Account" %>
 
     <%= f.input :transaction_type_id, as: :hidden %>
   </div>

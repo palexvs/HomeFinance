@@ -4,7 +4,7 @@ class TransactionsDatatable
   def initialize(view, transactions, accounts, categories)
     @view = view
     @transactions = transactions
-    @accounts = accounts.collect{ |u| [u.id,u.name]}
+    @accounts = accounts.map{ |u| [u.id, "#{u.balance.currency.symbol} #{u.name}"]}
     @categories = {}
     categories.each do |k,v|  
       @categories[k] = v.map { |i| [i.id, "#{'-' * i.depth} #{i.name}"] }

@@ -13,7 +13,7 @@
   <tbody>
 
   <%= render partial: 'transaction', :collection => @transactions, 
-    :locals => { accounts_list: accounts.collect{ |u| [u.id,u.name]}, categories: categories } %>
+    :locals => { accounts_list: accounts.map{ |u| [u.id, "#{u.balance.currency.symbol} #{u.name}"]}, categories: categories } %>
 
   </tbody>
 </table>
