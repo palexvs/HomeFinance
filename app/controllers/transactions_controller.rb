@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
 
   def index
     period = parse_period(params[:period])
-    @transactions = current_user.transactions.with_type.with_account.with_category.period(period)
+    @transactions = current_user.transactions.with_type.with_account.with_category.period(period[:start],period[:end])
 
     @categories = {
       "outlay" => current_user.categories.outlay.nested_set,

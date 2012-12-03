@@ -2,6 +2,8 @@
   <li class="<%= current_page?(transactions_path) ? "active" : "" %>" ><%= link_to "Transactions", transactions_path %></li>
   <li class="<%= current_page?(accounts_path) ? "active" : "" %>" ><%= link_to "Accounts", accounts_path %></li>
   <li class="<%= current_page?(categories_path) ? "active" : "" %>" ><%= link_to "Categories", categories_path %></li>
-  <li class="<%= current_page?(analytics_path) ? "active" : "" %>" ><%= link_to "Analytics", analytics_path %></li>
-  <li class="<%= current_page?(month_analytics_path) ? "active" : "" %>" ><%= link_to "Analytics (month)", month_analytics_path %></li>
+  <li class="nav-header">Analytics</li>
+  <li class="<%= current_page?(analytics_path) ? "active" : "" %>" ><%= link_to "Outlay trend", analytics_path %></li>
+  <li class="<%= current_page?(month_analytics_path) ? "active" : "" %>" ><%= link_to "Month report", month_analytics_path %></li>
+  <li class="<%= current_page?(accounts_analytics_path) ? "active" : "" %>" ><%= link_to "Account's balance trend", accounts_analytics_path %></li>
 </ul>

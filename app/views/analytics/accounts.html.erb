@@ -1,0 +1,18 @@
+<% if @period[:alert] %>
+  <div class='alert-message alert alert-error fade in' data-alert>
+    <a class="close" data-dismiss="alert" href="#">&times;</a>
+    <p> <%= @period[:alert] %> </p>
+  </div>
+<% end %>
+
+<%=  form_tag(accounts_analytics_path, method: :get, :class => "form-inline select-period") do  %>
+    
+    <%= text_field_tag 'period[start]', @period[:start], class: "datepicker input-small" %>
+    <%= text_field_tag 'period[finish]', @period[:finish], class: "datepicker input-small" %>
+
+    <%= submit_tag "Go", :class=>"btn btn-primary" %>
+<% end %>
+
+<%= content_tag :div, "", id: "statistic_chart", data: {statistic: @data} %>
+
+<script> $(function () { show_accounts_repost(); }); </script>

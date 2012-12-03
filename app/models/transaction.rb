@@ -57,7 +57,7 @@ class Transaction < ActiveRecord::Base
   scope :with_category, includes(:category)
   scope :with_type, includes(:transaction_type)
   scope :with_account, includes(:account, :trans_account)
-  scope :period, lambda { |period| where(:date => period[:start]..period[:end] ) }
+  scope :period, lambda { |start, finish| where(:date => start..finish ) }
   # default_scope order("date desc,id desc")
 
   before_create :update_balance_create

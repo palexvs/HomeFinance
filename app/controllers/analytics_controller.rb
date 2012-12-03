@@ -26,6 +26,24 @@ class AnalyticsController < ApplicationController
       start_date: @start_date.to_a[3..5].reverse,
       data: data_h
     }
+
+    respond_with(@data)
+  end
+
+  def accounts
+    @period = process_period(params[:period], 1.month.ago.to_date, Date.today)
+
+    accounts = current_user.accounts
+    transactions = current_user.transactions.period(@period[:start], @period[:finish]).order("date DESC")
+
+    @data = {
+      start_date: @period[:start],
+      finish_date: @period[:finish],
+      accounts: accounts.map { |a| {id: a.id, name: a.name, cents: a.balance_cents, currency_symbol: a.balance.currency.symbol} },
+      transactions: transactions.map { |t| {id: t.id, date: t.date, type_id: t.transaction_type_id, cents: t.amount_cents, account_id: t.account_id, t_cents: t.trans_amount_cents, t_account_id: t.trans_account_id, } }
+    }
+
+    respond_with(@data)
   end
 
   def month

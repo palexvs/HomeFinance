@@ -1,7 +1,7 @@
 module Analytic
   
-  def amount_by_day(start)
-    orders = where(date: start..Date.today)
+  def amount_by_day(start, finish = Date.today)
+    orders = period(start, finish)
     orders = orders.where(transaction_type_id: (Transaction::TYPES.index('outlay') + 1))
     orders = orders.group(:date, :category_id)
     orders = orders.select("date, category_id, sum(amount_cents) as total_amount")
@@ -11,7 +11,7 @@ module Analytic
   end  
 
   def amount_by_category(start = 4.weeks.ago, finish = Date.today)
-    orders = where(date: start..finish)
+    orders = orders = period(start, finish)
     # orders = orders.where("category_id IS NOT NULL")
     orders = orders.group(:category_id)
     orders = orders.select("category_id, sum(amount_cents) as total_amount")

@@ -189,3 +189,85 @@
   draw_chart_pie({"data": [["Outlay", data.outlay.sum],["Left", balance]], "sum": balance}, 'balance')
   draw_chart_pie(data.outlay, 'outlay')
   draw_chart_pie(data.income, 'income')
+
+@show_accounts_repost = ->
+  data = $("#statistic_chart").data("statistic")
+  
+  [sdy,sdm,sdd] = data.start_date.split("-")
+  start_date = Date.UTC(sdy,sdm-1,sdd)
+  [fdy,fdm,fdd] = data.finish_date.split("-")
+  finish_date = Date.UTC(fdy,fdm-1,fdd)
+
+  accounts = {}
+  
+  for a in data.accounts
+    a.data = []
+    a.data[d] = 0 for d in [finish_date..start_date] by -86400000
+    accounts[a.id] = a
+  
+  for t in data.transactions
+    [dy,dm,dd] = t.date.split("-")
+    t.date = Date.UTC(dy,dm-1,dd)
+  
+  data.transactions.sort (a, b) -> b.date - a.date
+  
+  for t in data.transactions
+    switch t.type_id
+      when 1
+        accounts[t.account_id].data[t.date] += t.cents
+      when 2
+        accounts[t.account_id].data[t.date] -= t.cents
+      when 3
+        accounts[t.account_id].data[t.date] += t.cents
+        accounts[t.t_account_id].data[t.date] -= t.t_cents
+  
+  for id,a of accounts
+    data_arr = [[finish_date, a.cents]]
+    min = 0
+    for date,cents of a.data
+      data_arr.push [parseInt(date), a.cents]
+      a.cents += cents
+      data_arr.push [parseInt(date), a.cents]
+    data_arr.push [start_date, a.cents]
+
+    container_id = "account_#{id}_chart-container"
+    $('#main').append("<div id='#{container_id}'></div>")
+    chart_area {
+      container_id: container_id
+      title: "Balance of '#{a.name} (#{a.currency_symbol})'"
+      subtitle: "#{data.start_date} - #{data.finish_date}"
+      currency: a.currency_symbol
+      series: [ {name: a.name, data: data_arr.reverse()} ]
+    }
+
+@chart_area = (cfg) ->
+  min = 0
+  min = v for d,v of cfg.series when v < min
+  chart = new Highcharts.Chart
+    chart:
+      renderTo: cfg.container_id
+      type: 'area'
+    title:
+      text: cfg.title
+    subtitle:
+      text: cfg.subtitle
+    xAxis:
+      type: 'datetime'
+    yAxis:
+      title:
+        text: cfg.currency
+      labels: 
+        formatter: () ->  Highcharts.numberFormat(@.value / 100,0,",")
+      min: min
+    tooltip:
+      formatter: -> Highcharts.dateFormat('%Y-%m-%d', @.x) + ": <b>" + Highcharts.numberFormat(@.y / 100,0,",") + " #{cfg.currency} </b>"
+    plotOptions:
+      area:
+        marker:
+          enabled: false
+          symbol: 'circle'
+          radius: 2
+          states:
+            hover:
+              enabled: true      
+    series: cfg.series
