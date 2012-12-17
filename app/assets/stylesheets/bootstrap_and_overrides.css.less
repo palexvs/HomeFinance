@@ -8,6 +8,7 @@
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
 // Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not 
 // have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath_iefix: '/assets/fontawesome-webfont.eot#iefix';
 @fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
 @fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
 @fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
@@ -106,7 +107,8 @@ body {
 }
 
 // Control cell
-.control ul.nav-pills {
+.controls.nav-pills ,
+.control .nav-pills {
   margin-bottom: 0;
   a {
     padding: 4px;

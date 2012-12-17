@@ -6,10 +6,10 @@
  
 <div class="tab-content">
   <div class="tab-pane active" id="outlay">
-    <%= sortable_tree(@categories_outlay, :type => :sortable, :title => :name, :new_url => new_category_path(:type => 'outlay') ) %>      
+    <%= sortable_tree(@categories_outlay, :path => 'categories/sortable/base', :type => :sortable, :title => :name, :new_url => new_category_path(:type => 'outlay') ) %>      
   </div>
   
   <div class="tab-pane" id="income">
-    <%= sortable_tree(@categories_income, :type => :sortable, :title => :name, :new_url => new_category_path(:type => 'income') ) %>
+    <%= sortable_tree(@categories_income, :path => 'categories/sortable/base', :type => :sortable, :title => :name, :new_url => new_category_path(:type => 'income') ) %>
   </div>
 </div>

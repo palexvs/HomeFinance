@@ -35,7 +35,8 @@ gem 'devise'
 # gem 'cancan'
 
 gem 'twitter-bootstrap-rails'#, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'therubyracer', :platforms => :ruby
+gem 'therubyracer', :platforms => :ruby, :require => 'v8'
+gem 'libv8', '~> 3.11.8'
 gem 'less-rails'#, '~> 2.2.3'
 
 gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'

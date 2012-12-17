@@ -14,9 +14,5 @@
 
  *= require dataTables/jquery.dataTables.bootstrap
 
- *= require tree
- *= require sortable
- *= require comments_tree
- 
  *= require_tree .
 */

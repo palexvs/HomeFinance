@@ -15,6 +15,7 @@
         <%=  render 'layouts/func_menu' if signed_in? %>
       </div>
       <div class="span8" id="main">
+        <%= bootstrap_flash %>
         <%= yield %>
       </div>
     </div>
