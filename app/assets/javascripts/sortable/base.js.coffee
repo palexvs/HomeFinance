@@ -6,9 +6,9 @@ class @TheSortableTree
     $('ol.sortable').nestedSortable
       disableNesting: 'no-nest'
       forcePlaceholderSize: true
-      handle: 'i.handle'
+      handle: 'i.icon-move'
       helper: 'clone'
-      items:  'li'
+      items:  'li.entity'
       maxLevels: @max_levels
       opacity: .6
       placeholder: 'placeholder'
@@ -38,10 +38,10 @@ class @TheSortableTree
         next_id:   next_id
 
       beforeSend: (xhr) ->
-        $('.nested_set i.handle').hide()
+        $('.nested_set i.icon-move').hide()
 
       success: (data, status, xhr) -> 
-        $('.nested_set i.handle').show()
+        $('.nested_set i.icon-move').show()
 
       error: (xhr, status, error) ->
         alert error

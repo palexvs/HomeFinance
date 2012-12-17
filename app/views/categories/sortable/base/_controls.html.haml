@@ -13,4 +13,8 @@
     :onclick => "alert('#{t('.delete_nested_elements')}')",
     :class   => 'button undeleted')
 -# OUTPUT
-= edit + delete
+%ul.nav.nav-pills
+  %li
+    = edit
+  %li
+    = delete
