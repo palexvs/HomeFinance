@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/palexvs/HomeFinance)
+{<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/palexvs/HomeFinance]
 
 == Welcome to HomeFinance
 
