@@ -21,7 +21,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = current_user.account.build(params[:account], :balance => 0)
+    @account = current_user.accounts.build(params[:account], :balance => 0)
 
     flash[:notice] = 'Account was successfully created.' if @account.save
 
