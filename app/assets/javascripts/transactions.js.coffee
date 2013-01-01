@@ -4,12 +4,12 @@
 jQuery ->
 
   $('#main')
-    .on('ajax:error', 'a.transaction-new', (xhr, err) -> HandleCommonErr(err))
-    .on('ajax:success', 'a.transaction-new', (xhr, data) -> ShowTransEditForm(data, "create"))
+    .on('ajax:error', '.transaction-new a', (xhr, err) -> HandleCommonErr(err))
+    .on('ajax:success', '.transaction-new a', (xhr, data) -> ShowTransEditForm(data, "create"))
     .on('ajax:error', 'a.transaction-edit', (xhr, err) -> HandleCommonErr(err))
     .on('ajax:success', 'a.transaction-edit', (xhr, data) -> ShowTransEditForm(data, "update"))
-    .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction( $(this)  ))   
-    .on('change', 'select#Transaction_period', () -> ReloadTransactionsList($(this).val() ) )
+    .on('ajax:success', 'a.transaction-delete', (xhr, data) -> RemoveTransaction( $(this)  ))
+    # .on('change', 'select#Transaction_period', () -> ReloadTransactionsList($(this).val() ) )
 
 
 RemoveTransaction= (el) ->

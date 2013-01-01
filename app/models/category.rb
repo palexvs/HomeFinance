@@ -12,7 +12,7 @@
 #  type_id   :integer          not null
 #
 
-class Category < ActiveRecord::Base  
+class Category < ActiveRecord::Base
   acts_as_nested_set
   include TheSortableTree::Scopes
 
@@ -27,5 +27,9 @@ class Category < ActiveRecord::Base
 
   Transaction::TYPES.each_with_index do |type, i|
     scope "#{type}".to_sym, where(type_id: i)
+  end
+
+  def type
+    Transaction::TYPES[type_id]
   end
 end

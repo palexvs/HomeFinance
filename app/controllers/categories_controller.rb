@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
     @category = Category.new :type_id => Transaction::TYPES.index(params[:type]) || Transaction::TYPES.index('outlay')
 
     respond_with(@category, :location => categories_path)
-  end  
+  end
 
   def edit
   end
@@ -29,19 +29,19 @@ class CategoriesController < ApplicationController
 
     flash[:notice] = 'Account was successfully created.' if @category.save
 
-    respond_with(@category, :location => categories_path)
+    respond_with(@category, :location => categories_path+"##{@category.type}")
   end
 
   def update
     flash[:notice] = 'Account was successfully updated.' if @category.update_attributes(params[:category])
 
-    respond_with(@category, :location => categories_path)
+    respond_with(@category, :location => categories_path+"##{@category.type}")
   end
 
   def destroy
     flash[:notice] = 'Account was successfully deleted.' if @category.destroy
 
-    respond_with(@category)
+    respond_with(@category, :location => categories_path+"##{@category.type}")
   end
 
   private

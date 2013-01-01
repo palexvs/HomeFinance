@@ -6,7 +6,7 @@
 @iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not 
+// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not
 // have the proper paths. So for now we use the absolute path.
 @fontAwesomeEotPath_iefix: '/assets/fontawesome-webfont.eot#iefix';
 @fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
@@ -33,14 +33,19 @@ body {
   margin-top: 60px;
 }
 
-#Transaction_period {
-  margin-bottom: -50px;
+// #Transaction_period {
+//   margin-bottom: -50px;
+// }
+#transactions {
+  .select-period {
+    margin-bottom: -30px;
+  }
 }
 // Accounts Table
 .accounts-list, .transactions-list {
   thead th[tabindex="0"] {
     cursor: pointer;
-  }  
+  }
 
   .DataTables_sort_wrapper {
     position: relative;
@@ -64,7 +69,7 @@ body {
     span {
       width:100%;
       display:block;
-    }    
+    }
     vertical-align: middle;
     &.date {
       width:85px;
@@ -83,7 +88,7 @@ body {
     }
     &.category {
       width: 120px;
-    }    
+    }
     &.control {
       width: 55px;
     }
@@ -94,15 +99,15 @@ body {
         text-align:right;
       }
       > div {
-        display: table; 
+        display: table;
         position: static;
         > div {
-          display: table-cell; 
-          vertical-align: middle; 
+          display: table-cell;
+          vertical-align: middle;
           width: 100%;
         }
-      } 
-    }   
+      }
+    }
   }
 }
 
@@ -116,8 +121,8 @@ body {
 
 // DEBUG BOX
 .box_sizing {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -130,6 +135,9 @@ body {
 }
 
 // COMMON STYLES
+.btn-new {
+  margin-bottom: 20px;
+}
 .hidden {
   display: none;
 }
@@ -137,11 +145,11 @@ body {
 #alert-area {
   position: fixed;
   top: 45px;
-  right: 5px;  
+  right: 5px;
   z-index: 1050;
 }
 
-// make faster 
+// make faster
 .fade {
   -webkit-transition: opacity 0.05s linear;
   -moz-transition: opacity 0.05s linear;
@@ -163,7 +171,7 @@ div {
   }
   &.left {
     float:left;
-  }  
+  }
   &.clear {
     clear:both;
   }

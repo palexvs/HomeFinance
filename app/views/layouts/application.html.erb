@@ -18,6 +18,9 @@
         <%= bootstrap_flash %>
         <%= yield %>
       </div>
+      <div class="span2" id="widgets">
+        <%= render "accounts/balance_widget", accounts: @accounts if @accounts %>
+      </div>
     </div>
 
   </div>
@@ -25,6 +28,6 @@
     <%= debug(params) if Rails.env.development? %>
     <div class="row" id="modal"></div>
     <div class="row" id="alert-area"></div>
-    
+
 </body>
 </html>

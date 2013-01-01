@@ -1,26 +1,24 @@
-<h2>Transaction's list</h2>
-
-<div class="btn-group">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    New
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu">
-    <li><%= link_to "Outlay", new_transaction_path(:type => "outlay"), remote: true, class: "transaction-new" %></li>
-    <li><%= link_to "Income", new_transaction_path(:type => "income"), remote: true, class: "transaction-new" %></li>
-    <li><%= link_to "Transfer", new_transaction_path(:type => "transfer"), remote: true, class: "transaction-new" %></li>
-  </ul>
-</div>
-
-
 <div id="transactions">
-  <%= select_period() %>
+
+  <h2>Transactions list</h2>
+
+  <div class="btn-group transaction-new btn-new">
+    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+      <%= glyph(:plus, :white) %> New <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Outlay", new_transaction_path(:type => "outlay"), remote: true %></li>
+      <li><%= link_to "Income", new_transaction_path(:type => "income"), remote: true %></li>
+      <li><%= link_to "Transfer", new_transaction_path(:type => "transfer"), remote: true %></li>
+    </ul>
+  </div>
+
+  <%=  form_tag(transactions_path, method: :get, :class => "form-inline select-period") do  %>
+    <%= text_field_tag 'period[start]', @period[:start], class: "datepicker input-small" %>
+    <%= text_field_tag 'period[finish]', @period[:finish], class: "datepicker input-small" %>
+
+    <%= submit_tag "Go", :class=>"btn" %>
+  <% end %>
+
 	<%= render 'transaction_list', accounts: @accounts, categories: @categories %>
-</div>
-
-</div>
-
-<div class="span2" id="widgets">
-<div id="balance_widget">
-  <%= render "accounts/balance_widget", accounts: @accounts %>
 </div>

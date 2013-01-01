@@ -1,22 +1,18 @@
 class TransactionsController < ApplicationController
   include PeriodHelper
   before_filter :authenticate_user!
-  
+
+  before_filter :get_categories_all, only: [:index]
   before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
   before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json
 
   def index
-    period = parse_period(params[:period])
-    @transactions = current_user.transactions.with_type.with_account.with_category.period(period[:start],period[:end])
+    @period = process_period(params[:period], 1.month.ago.to_date, Date.today)
+    @transactions = current_user.transactions.with_type.with_account.with_category.period(@period[:start],@period[:finish])
 
-    @categories = {
-      "outlay" => current_user.categories.outlay.nested_set,
-      "income" => current_user.categories.income.nested_set
-    }
-
-    respond_with do |format|      
+    respond_with do |format|
       format.html { render partial: 'transaction_list', :locals => { accounts: @accounts, categories: @categories } } if params[:partial]
       format.json { render json: TransactionsDatatable.new(view_context, @transactions, @accounts, @categories ) }
     end
@@ -58,9 +54,9 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def update   
+  def update
     @categories = { @transaction.transaction_type_name => get_category_list(@transaction.transaction_type_id - 1) }
-    
+
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
         format.json { render json: TransactionsDatatable.new(view_context, [@transaction], @accounts, @categories), status: :ok}
@@ -78,23 +74,29 @@ class TransactionsController < ApplicationController
 
   private
 
+  def get_categories_all
+    @categories = {
+      "outlay" => current_user.categories.outlay.nested_set,
+      "income" => current_user.categories.income.nested_set
+    }
+    redirect_to categories_path+'#outlay', alert: "Please, create at least one outlay categories." if @categories["outlay"].empty?
+    redirect_to categories_path+'#income', alert: "Please, create at least one income categories." if @categories["income"].empty?
+  end
+
   def get_category_list(type_id)
-    current_user.categories.where("type_id = ?", type_id).nested_set
+    @categories = current_user.categories.where("type_id = ?", type_id).nested_set
   end
 
   def get_account_list
     @accounts = current_user.accounts.all
-    if @accounts.empty? 
-      redirect_to accounts_path, alert: "Please, create at least one account."
-    end
+
+    redirect_to accounts_path, alert: "Please, create at least one account." if @accounts.empty?
   end
 
   def get_transaction_by_id
     @transaction = current_user.transactions.find_by_id(params[:id])
 
-    if @transaction.nil?
-      redirect_to transactions_path, alert: "Can't get such transaction."
-    end
+    redirect_to transactions_path, alert: "Can't get such transaction." if @transaction.nil?
   end
 
   def transaction_edit_form

@@ -1,9 +1,11 @@
-<h3>Balance:</h3>
-<table>
-	<% accounts.each do |account| %>
-		<tr>
-		  <td class="key"><%= account.name %> <%= account.balance.currency.symbol %>:</td>
-		  <td class="value"><%= account.balance %></td>
-		</tr>
-	<% end %>
-</table>
+<div id="balance_widget">
+  <h3>Balance:</h3>
+  <table>
+  	<% accounts.each do |account| %>
+  		<tr>
+  		  <td class="key"><%= account.name %> <%= account.balance.currency.symbol %>:</td>
+  		  <td class="value"><%= account.balance %></td>
+  		</tr>
+  	<% end %>
+  </table>
+</div>
