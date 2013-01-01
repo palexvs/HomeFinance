@@ -79,8 +79,11 @@ class TransactionsController < ApplicationController
       "outlay" => current_user.categories.outlay.nested_set,
       "income" => current_user.categories.income.nested_set
     }
-    redirect_to categories_path+'#outlay', alert: "Please, create at least one outlay categories." if @categories["outlay"].empty?
-    redirect_to categories_path+'#income', alert: "Please, create at least one income categories." if @categories["income"].empty?
+    if @categories["outlay"].empty?
+      redirect_to categories_path+'#outlay', alert: "Please, create at least one outlay categories."
+    elsif @categories["income"].empty?
+      redirect_to categories_path+'#income', alert: "Please, create at least one income categories."
+    end
   end
 
   def get_category_list(type_id)
