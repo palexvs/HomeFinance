@@ -16,3 +16,5 @@
 
 # Ignore real db-config with passwords
 config/database.yml
+
+/.idea

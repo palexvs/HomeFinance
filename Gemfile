@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -45,7 +45,7 @@ gem 'the_sortable_tree'#, :git => "https://github.com/the-teacher/the_sortable_t
 
 gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place' #, :git => "https://github.com/gposton/best_in_place.git"
 gem 'money-rails', :git => "https://github.com/palexvs/money-rails"
-                    #:path => "/home/alexvs/rails_work/money-rails" 
+                    #:path => "/home/alexvs/rails_work/money-rails"
                     #:git => "https://github.com/RubyMoney/money-rails.git"
 gem 'simple_form'
 
