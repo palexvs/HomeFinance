@@ -17,10 +17,10 @@ class Account < ActiveRecord::Base
 
   monetize :balance_cents
   validates :balance, :numericality => true
-  validates :name, :presence => true, :length => { :maximum => 15 }, 
-                    :uniqueness => { :scope => [:currency, :user_id], :message => "Account with such Name and Currency already exists" }
-  validates :description, :length => { :maximum => 255 }
-  validates :currency, :presence => true, :length => {:is => 3}, :inclusion => { :in => Finance::Application.config.currency_list }
+  validates :name, :presence => true, :length => {:maximum => 15},
+            :uniqueness => {:scope => [:currency, :user_id], :message => "Account with such Name and Currency already exists"}
+  validates :description, :length => {:maximum => 255}
+  validates :currency, :presence => true, :length => {:is => 3}, :inclusion => {:in => Finance::Application.config.currency_list}
 
   has_many :transactions, :class_name => 'Transaction', :foreign_key => 'account_id'
   has_many :trans_transactions, :class_name => 'Transaction', :foreign_key => 'trans_account_id'
@@ -30,10 +30,17 @@ class Account < ActiveRecord::Base
 
   default_scope order(:id)
 
+  before_create :set_balance
+
   def as_json (options = nil)
     options ||= {}
     options[:methods] = ((options[:methods] || []) + [:balance])
     super options
+  end
+
+  private
+  def set_balance
+    self.balance = 0
   end
 
 end

@@ -12,4 +12,15 @@ class User < ActiveRecord::Base
   has_many :transactions, :dependent => :destroy
   has_many :accounts, :dependent => :destroy
   has_many :categories, :dependent => :destroy
+
+  after_create :init
+
+  private
+  def init
+    self.accounts.create(name: "Cash", currency: 'UAH')
+    self.categories.create(name: "Default", type_id: Transaction::TYPES.index("income"))
+    self.categories.create(name: "Default", type_id: Transaction::TYPES.index("outlay"))
+    true
+  end
+
 end
