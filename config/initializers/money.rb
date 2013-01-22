@@ -38,4 +38,29 @@ MoneyRails.configure do |config|
   #   :decimal_mark        => ","
   # }
 
+  class Money
+    include ActiveModel::Serializers::JSON
+    include ActiveModel::Serializers::Xml
+
+    def attributes
+      {
+          cents: cents,
+          to_s: self.to_s,
+          currency: currency
+      }
+    end
+
+    class Currency
+      include ActiveModel::Serializers::JSON
+      include ActiveModel::Serializers::Xml
+
+      def attributes
+        {
+            html_entity: html_entity,
+        }
+      end
+    end
+
+  end
+
 end
