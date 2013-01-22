@@ -3,18 +3,18 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
   before_filter :get_categories_all, only: [:index]
-  before_filter :get_account_list,  only: [:index, :new, :create, :edit, :update]
-  before_filter :get_transaction_by_id,  only: [:show, :edit, :update, :destroy]
+  before_filter :get_account_list, only: [:index, :new, :create, :edit, :update]
+  before_filter :get_transaction_by_id, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json
 
   def index
     @period = process_period(params[:period], 1.month.ago.to_date, Date.today)
-    @transactions = current_user.transactions.with_type.with_account.with_category.period(@period[:start],@period[:finish])
+    @transactions = current_user.transactions.with_type.with_account.with_category.period(@period[:start], @period[:finish])
 
     respond_with do |format|
-      format.html { render partial: 'transaction_list', :locals => { accounts: @accounts, categories: @categories } } if params[:partial]
-      format.json { render json: TransactionsDatatable.new(view_context, @transactions, @accounts, @categories ) }
+      format.html { render partial: 'transaction_list', :locals => {accounts: @accounts, categories: @categories} } if params[:partial]
+      format.json { render json: TransactionsDatatable.new(view_context, @transactions, @accounts, @categories) }
     end
   end
 
@@ -22,26 +22,26 @@ class TransactionsController < ApplicationController
   end
 
   def new
-    default = {account_id:  @accounts.first.id, date: Date.current().to_s(:db)}
+    default = {account_id: @accounts.first.id, date: Date.current().to_s(:db)}
     default[:transaction_type_id] = TransactionType.find_by_name(params[:type]).id
 
     @transaction = Transaction.new(default)
     @categories = get_category_list(@transaction[:transaction_type_id] - 1)
 
     respond_with do |format|
-      format.html { render partial: transaction_edit_form, locals: {categories: @categories, accounts: @accounts, transaction: @transaction } }
+      format.html { render partial: transaction_edit_form, locals: {categories: @categories, accounts: @accounts, transaction: @transaction} }
     end
   end
 
   def create
     @transaction = current_user.transactions.build(params[:transaction])
-    @categories = { @transaction.transaction_type_name => get_category_list(@transaction.transaction_type_id - 1) }
+    @categories = {@transaction.transaction_type_name => get_category_list(@transaction.transaction_type_id - 1)}
 
     respond_to do |format|
       if @transaction.save
-        format.json { render json: TransactionsDatatable.new(view_context, [@transaction], @accounts, @categories ) }
+        format.json { render json: TransactionsDatatable.new(view_context, [@transaction], @accounts, @categories) }
       else
-        format.json { render json: @transaction.errors, status: :unprocessable_entity}
+        format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -50,34 +50,36 @@ class TransactionsController < ApplicationController
     @categories = get_category_list(@transaction.transaction_type_id - 1)
 
     respond_with do |format|
-      format.html { render partial: transaction_edit_form, locals: { categories: @categories, accounts: @accounts, transaction: @transaction }}
+      format.html { render partial: transaction_edit_form, locals: {categories: @categories, accounts: @accounts, transaction: @transaction} }
     end
   end
 
   def update
-    @categories = { @transaction.transaction_type_name => get_category_list(@transaction.transaction_type_id - 1) }
+    @categories = {@transaction.transaction_type_name => get_category_list(@transaction.transaction_type_id - 1)}
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.json { render json: TransactionsDatatable.new(view_context, [@transaction], @accounts, @categories), status: :ok}
+        format.json { render json: TransactionsDatatable.new(view_context, [@transaction], @accounts, @categories), status: :ok }
       else
-        format.json { render json: @transaction.errors, status: :unprocessable_entity}
+        format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    flash[:notice] =  'Transaction was successfully delete.'  if @transaction.destroy
+    flash[:notice] = 'Transaction was successfully delete.' if @transaction.destroy
 
-    respond_with(@transaction)
+    respond_to do |format|
+      format.json { render json: @transaction.id }
+    end
   end
 
   private
 
   def get_categories_all
     @categories = {
-      "outlay" => current_user.categories.outlay.nested_set,
-      "income" => current_user.categories.income.nested_set
+        "outlay" => current_user.categories.outlay.nested_set,
+        "income" => current_user.categories.income.nested_set
     }
     if @categories["outlay"].empty?
       redirect_to categories_path+'#outlay', alert: "Please, create at least one outlay categories."
