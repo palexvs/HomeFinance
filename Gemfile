@@ -40,7 +40,7 @@ gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nes
 gem 'haml'
 gem 'the_sortable_tree', '~> 1.9.4'
 
-gem 'best_in_place', git: 'https://github.com/bernat/best_in_place'
+gem 'best_in_place' #, git: 'https://github.com/bernat/best_in_place'
 gem 'money-rails'
 gem 'simple_form'
 

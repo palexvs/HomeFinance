@@ -6,14 +6,6 @@ GIT
       jquery-rails
 
 GIT
-  remote: https://github.com/bernat/best_in_place
-  revision: ed0a6a573e84be18fb7381ff69c16295027a9c33
-  specs:
-    best_in_place (2.0.2)
-      jquery-rails
-      rails (~> 3.1)
-
-GIT
   remote: https://github.com/collectiveidea/awesome_nested_set
   revision: f1a321d125b808c17b6768b5acad0c24b524bdbc
   specs:
@@ -50,11 +42,13 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    addressable (2.3.2)
     annotate (2.5.0)
       rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    best_in_place (2.0.3)
+      jquery-rails
+      rails (~> 3.1)
     builder (3.0.4)
     capybara (2.0.2)
       mime-types (>= 1.16)
@@ -63,7 +57,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 1.0.0)
-    childprocess (0.3.6)
+    childprocess (0.3.7)
       ffi (~> 1.0, >= 1.0.6)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -106,9 +100,6 @@ GEM
       actionpack (>= 3.1)
       less (~> 2.2.0)
     libv8 (3.11.8.13)
-    libwebsocket (0.1.7.1)
-      addressable
-      websocket
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -168,11 +159,11 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.27.2)
+    selenium-webdriver (2.29.0)
       childprocess (>= 0.2.5)
-      libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+      websocket (~> 1.0.4)
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -211,7 +202,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   awesome_nested_set!
-  best_in_place!
+  best_in_place
   capybara
   coffee-rails
   database_cleaner
