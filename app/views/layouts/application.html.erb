@@ -2,32 +2,33 @@
 <html>
 <head>
   <title>Finance</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body  data-spy="scroll" data-target=".bs-docs-sidebar">
-  <%= render 'layouts/header', current_user: current_user %>
-  <div class="container-fluid">
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<%= render 'layouts/header', current_user: current_user %>
+<div class="container-fluid">
 
-    <div class="row-fluid">
-      <div class="span2 bs-docs-sidebar" id="menu">
-        <%=  render 'layouts/func_menu' if signed_in? %>
-      </div>
-      <div class="span8" id="main">
-        <%= bootstrap_flash %>
-        <%= yield %>
-      </div>
-      <div class="span2" id="widgets">
-        <%= render "accounts/balance_widget", accounts: @accounts if @accounts %>
-      </div>
+  <div class="row-fluid">
+    <div class="span2 bs-docs-sidebar" id="menu">
+      <%= render 'layouts/func_menu' if signed_in? %>
     </div>
-
+    <div class="span8" id="main">
+      <%= bootstrap_flash %>
+      <%= yield %>
+    </div>
+    <div class="span2" id="widgets">
+      <%= render "accounts/balance_widget", accounts: @accounts if @accounts %>
+    </div>
   </div>
 
-    <%= debug(params) if Rails.env.development? %>
-    <div class="row" id="modal"></div>
-    <div class="row" id="alert-area"></div>
+</div>
+
+<%= debug(params) if Rails.env.development? %>
+<div class="row" id="modal"></div>
+<div class="row" id="alert-area"></div>
 
 </body>
 </html>
