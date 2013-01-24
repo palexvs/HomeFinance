@@ -1,3 +1,7 @@
+body {
+  padding-top: 60px;
+}
+
 @import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap/responsive";
 
@@ -29,10 +33,6 @@
 // Example:
 // @linkColor: #ff0000;
 
-body {
-  margin-top: 60px;
-}
-
 // #Transaction_period {
 //   margin-bottom: -50px;
 // }
@@ -41,6 +41,7 @@ body {
     margin-bottom: -30px;
   }
 }
+
 // Accounts Table
 .accounts-list, .transactions-list {
   thead th[tabindex="0"] {
@@ -63,22 +64,22 @@ body {
     select {
       width: 100%;
       height: auto;
-      margin:0;
-      padding:0;
+      margin: 0;
+      padding: 0;
     }
     span {
-      width:100%;
-      display:block;
+      width: 100%;
+      display: block;
     }
     vertical-align: middle;
     &.date {
-      width:85px;
+      width: 85px;
     }
     &.type {
       width: 85px;
     }
     &.amount {
-      width:80px;
+      width: 80px;
     }
     &.currency {
       width: 80px;
@@ -96,7 +97,7 @@ body {
   tr.transfer {
     td {
       .direction {
-        text-align:right;
+        text-align: right;
       }
       > div {
         display: table;
@@ -138,6 +139,7 @@ body {
 .btn-new {
   margin-bottom: 20px;
 }
+
 .hidden {
   display: none;
 }
@@ -167,13 +169,13 @@ body {
 
 div {
   &.right {
-    float:right;
+    float: right;
   }
   &.left {
-    float:left;
+    float: left;
   }
   &.clear {
-    clear:both;
+    clear: both;
   }
 }
 
@@ -183,5 +185,5 @@ div.divider {
   overflow: hidden;
   background-color: #e5e5e5;
   border-bottom: 1px solid #ffffff;
-  clear:both;
+  clear: both;
 }
