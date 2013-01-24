@@ -2,25 +2,9 @@ body {
   padding-top: 60px;
 }
 
-@import "twitter/bootstrap/bootstrap";
-@import "twitter/bootstrap/responsive";
-
-// Set the correct sprite paths
-@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
-@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
-
-// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not
-// have the proper paths. So for now we use the absolute path.
-@fontAwesomeEotPath_iefix: '/assets/fontawesome-webfont.eot#iefix';
-@fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
-@fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
-@fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
-@fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
-
-// Font Awesome
-// Do not work with heroku
-@import "fontawesome";
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "font-awesome";
 
 // Your custom LESS stylesheets goes here
 //
@@ -121,18 +105,12 @@ body {
 }
 
 // DEBUG BOX
-.box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 .debug_dump {
   clear: both;
   float: left;
   width: 100%;
   margin-top: 45px;
-  .box_sizing;
+  @include box-sizing(border-box);
 }
 
 // COMMON STYLES
@@ -153,18 +131,19 @@ body {
 
 // make faster
 .fade {
-  -webkit-transition: opacity 0.05s linear;
-  -moz-transition: opacity 0.05s linear;
-  -o-transition: opacity 0.05s linear;
-  transition: opacity 0.05s linear;
+  @include transition(opacity 0.05s linear);
 }
 
 // make faster modal window
-.modal.fade {
-  -webkit-transition: opacity 0.05s linear, top 0.05s ease-out;
-  -moz-transition: opacity 0.05s linear, top 0.05s ease-out;
-  -o-transition: opacity 0.05s linear, top 0.05s ease-out;
-  transition: opacity 0.05s linear, top 0.05s ease-out;
+.modal {
+
+  form {
+    margin: 0;
+  }
+
+  .fade {
+    @include transition(opacity 0.05s linear, top 0.05s ease-out);
+  }
 }
 
 div {

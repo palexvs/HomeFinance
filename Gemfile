@@ -12,6 +12,9 @@ group :assets do
   gem 'uglifier'
 
   gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+
+  gem 'bootstrap-sass'
+  gem 'font-awesome-sass-rails'
 end
 
 group :development, :test do
@@ -31,10 +34,10 @@ gem "highcharts-rails"
 gem 'devise'
 # gem 'cancan'
 
-gem 'twitter-bootstrap-rails'
-gem 'therubyracer', :platforms => :ruby, :require => 'v8'
-gem 'libv8', '~> 3.11.8'
-gem 'less-rails'
+#gem 'twitter-bootstrap-rails'
+#gem 'therubyracer', :platforms => :ruby, :require => 'v8'
+#gem 'libv8', '~> 3.11.8'
+#gem 'less-rails'
 
 gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'
 gem 'haml'
