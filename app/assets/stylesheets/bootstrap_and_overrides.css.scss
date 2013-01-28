@@ -141,7 +141,7 @@ body {
     margin: 0;
   }
 
-  .fade {
+  &.fade {
     @include transition(opacity 0.05s linear, top 0.05s ease-out);
   }
 }

@@ -22,6 +22,14 @@ group :development, :test do
   gem 'hirb'
 end
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+
+  gem 'annotate'
+end
+
 group :test do
   gem 'capybara'
 #  gem 'capybara-webkit'
@@ -34,11 +42,6 @@ gem "highcharts-rails"
 gem 'devise'
 # gem 'cancan'
 
-#gem 'twitter-bootstrap-rails'
-#gem 'therubyracer', :platforms => :ruby, :require => 'v8'
-#gem 'libv8', '~> 3.11.8'
-#gem 'less-rails'
-
 gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'
 gem 'haml'
 gem 'the_sortable_tree', '~> 1.9.4'
@@ -48,8 +51,6 @@ gem 'money-rails'
 gem 'simple_form'
 
 gem 'jquery-rails'
-
-gem 'annotate', group: :development
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
